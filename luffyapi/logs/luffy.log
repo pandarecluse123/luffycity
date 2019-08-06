@@ -1,0 +1,12 @@
+INFO 2019-08-06 03:06:35,297 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 03:06:52,269 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 12:26:17,789 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 12:40:55,112 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 12:41:02,382 autoreload 217 /home/moluo/.local/lib/python3.6/site-packages/django/db/backends/mysql/base.py changed, reloading.
+INFO 2019-08-06 12:41:03,921 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 12:41:06,212 autoreload 217 /home/moluo/.local/lib/python3.6/site-packages/django/db/backends/mysql/base.py changed, reloading.
+INFO 2019-08-06 12:41:08,276 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 12:41:14,501 autoreload 217 /home/moluo/.local/lib/python3.6/site-packages/django/db/backends/mysql/operations.py changed, reloading.
+INFO 2019-08-06 12:41:16,720 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 12:41:30,536 autoreload 217 /home/moluo/.local/lib/python3.6/site-packages/django/db/backends/mysql/operations.py changed, reloading.
+INFO 2019-08-06 12:41:31,683 autoreload 597 Watching for file changes with StatReloader
