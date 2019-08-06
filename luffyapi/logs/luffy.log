@@ -10,3 +10,12 @@ INFO 2019-08-06 12:41:14,501 autoreload 217 /home/moluo/.local/lib/python3.6/sit
 INFO 2019-08-06 12:41:16,720 autoreload 597 Watching for file changes with StatReloader
 INFO 2019-08-06 12:41:30,536 autoreload 217 /home/moluo/.local/lib/python3.6/site-packages/django/db/backends/mysql/operations.py changed, reloading.
 INFO 2019-08-06 12:41:31,683 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 14:01:46,443 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/settings/dev.py changed, reloading.
+INFO 2019-08-06 14:01:47,372 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-06 14:03:17,936 basehttp 154 "GET / HTTP/1.1" 200 16348
+INFO 2019-08-06 14:03:17,983 basehttp 154 "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+INFO 2019-08-06 14:03:18,271 basehttp 154 "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+INFO 2019-08-06 14:03:18,277 basehttp 154 "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+INFO 2019-08-06 14:03:18,289 basehttp 154 "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+WARNING 2019-08-06 14:03:18,312 log 228 Not Found: /favicon.ico
+WARNING 2019-08-06 14:03:18,313 basehttp 154 "GET /favicon.ico HTTP/1.1" 404 1981

@@ -25,7 +25,7 @@ SECRET_KEY = 'l&y!r&*+oey2_=4%dj=s^$p%g^m(2z1r4dnsjez#ohps&(^9ci'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['api.luffycity.cn']
 
 
 # Application definition
@@ -37,9 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -174,3 +177,9 @@ REST_FRAMEWORK = {
     # 异常处理
     'EXCEPTION_HANDLER': os.path.join(BASE_DIR, 'utils.exceptions.custom_exception_handler')
 }
+
+# CORS组的配置信息
+CORS_ORIGIN_WHITELIST = (
+    'www.luffycity.cn:8080',
+)
+CORS_ALLOW_CREDENTIALS = True  # 允许ajax跨域请求时携带cookie
