@@ -1,7 +1,7 @@
 from django.db import models
-
+from luffyapi.utils.models import BaseModel
 # Create your models here.
-class BannerInfo(models.Model):
+class BannerInfo(BaseModel):
     """
     轮播图
     """
@@ -10,9 +10,6 @@ class BannerInfo(models.Model):
     name = models.CharField(max_length=150, verbose_name='轮播图名称')
     note = models.CharField(max_length=150, verbose_name='备注信息')
     link = models.CharField(max_length=150, verbose_name='轮播图广告地址')
-    orders = models.IntegerField(verbose_name='显示顺序')
-    is_show=models.BooleanField(verbose_name="是否上架",default=False)
-    is_delete=models.BooleanField(verbose_name="逻辑删除",default=False)
 
     class Meta:
         db_table = 'ly_banner'
@@ -22,5 +19,21 @@ class BannerInfo(models.Model):
     def __str__(self):
         return self.name
 
+class NavInfo(BaseModel):
+    """导航"""
+    # 导航位置
+    NAV_OPTION = (
+        (1,"头部导航"),
+        (2,"脚部导航"),
+    )
+    name = models.CharField(max_length=150, verbose_name='导航名称')
+    link = models.CharField(max_length=150, verbose_name='导航链接地址')
+    opt = models.SmallIntegerField(choices=NAV_OPTION,default=1, verbose_name="导航位置")
 
+    class Meta:
+        db_table = 'ly_nav'
+        verbose_name = '导航'
+        verbose_name_plural = verbose_name
 
+    def __str__(self):
+        return self.name

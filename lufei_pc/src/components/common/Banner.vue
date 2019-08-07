@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
       <el-carousel trigger="click" height="506px">
-      <el-carousel-item v-for="item in banner_list">
+      <el-carousel-item v-for="item,key in banner_list" :key="key">
         <a :href="item.link"><img :src="item.image"></a>
       </el-carousel-item>
     </el-carousel>

@@ -1,5 +1,6 @@
 import xadmin
 from xadmin import views
+from .models import BannerInfo,NavInfo
 
 class BaseSetting(object):
     """xadmin的基本配置"""
@@ -18,7 +19,12 @@ xadmin.site.register(views.CommAdminView, GlobalSettings)
 
 
 # 轮播图
-from .models import BannerInfo
+
 class BannerInfoModelAdmin(object):
     list_display=["name","orders","is_show"]
 xadmin.site.register(BannerInfo, BannerInfoModelAdmin)
+
+
+class NavInfoInfoModelAdmin(object):
+    list_display=["name","link","is_show"]
+xadmin.site.register(NavInfo, NavInfoInfoModelAdmin)
