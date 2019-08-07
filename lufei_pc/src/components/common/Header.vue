@@ -7,9 +7,11 @@
           </div>
           <ul class="nav full-left">
               <li v-for="nav,key in nav_list" :key="key">
-                <a :href="nav.link" v-if="nav.link.search('://')==0"><span>{{nav.name}}</span></a>
-                <router-link v-else :to="nav.link"><span>{{nav.name}}</span></router-link>
-            </li>
+            <!--    <a :href="nav.link" v-if="nav.link.search('://')==0"><span>{{nav.name}}</span></a>
+                <router-link v-else :to="nav.link"><span>{{nav.name}}</span></router-link>-->
+                  <router-link v-if="nav.link.search('://') == -1" :to="nav.link">{{nav.name}}</router-link>
+                <a v-else :href="nav.link">{{nav.name}}</a>
+              </li>
           </ul>
           <div class="login-bar full-right">
             <div class="shop-cart full-left">
@@ -17,7 +19,7 @@
               <span><router-link to="/cart">购物车</router-link></span>
             </div>
             <div class="login-box full-left">
-              <span>登录</span>
+              <router-link to="user/login/"><span>登录</span></router-link>
               &nbsp;|&nbsp;
               <span>注册</span>
             </div>

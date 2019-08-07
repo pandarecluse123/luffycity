@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'reversion',
 
-    'home'
+    'home',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -199,3 +200,5 @@ CORS_ORIGIN_WHITELIST = (
     'http://www.luffycity.cn:8080',
 )
 CORS_ALLOW_CREDENTIALS = True  # 允许ajax跨域请求时携带cookie
+
+AUTH_USER_MODEL = 'users.User'

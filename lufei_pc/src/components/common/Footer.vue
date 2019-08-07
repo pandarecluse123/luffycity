@@ -48,6 +48,9 @@
   text-align: center;
   font-size: 14px;
 }
+.footer ul li a{
+  color: #ffffff;
+}
 .footer ul::after{
   content:"";
   display:block;
