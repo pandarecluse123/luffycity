@@ -14,7 +14,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+import sys
+sys.path.insert(0,os.path.join(BASE_DIR,"apps"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -39,6 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'corsheaders',
+    'rest_framework',
+    'xadmin',
+    'crispy_forms',
+    'reversion',
+
+    'home'
 ]
 
 MIDDLEWARE = [
@@ -46,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -111,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -127,6 +134,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# 设置django的静态文件目录
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,"statics")
+]
+
+# 项目中存储上传文件的根目录[暂时配置]，注意，static目录需要手动创建否则上传文件时报错
+MEDIA_ROOT=os.path.join(BASE_DIR,"statics")
+# 访问上传文件的url地址前缀
+MEDIA_URL ="/media/"
 
 LOGGING = {
     'version': 1,
@@ -180,6 +196,6 @@ REST_FRAMEWORK = {
 
 # CORS组的配置信息
 CORS_ORIGIN_WHITELIST = (
-    'www.luffycity.cn:8080',
+    'http://www.luffycity.cn:8080',
 )
 CORS_ALLOW_CREDENTIALS = True  # 允许ajax跨域请求时携带cookie
