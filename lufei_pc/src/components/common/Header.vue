@@ -7,23 +7,44 @@
           </div>
           <ul class="nav full-left">
               <li v-for="nav,key in nav_list" :key="key">
-            <!--    <a :href="nav.link" v-if="nav.link.search('://')==0"><span>{{nav.name}}</span></a>
-                <router-link v-else :to="nav.link"><span>{{nav.name}}</span></router-link>-->
                   <router-link v-if="nav.link.search('://') == -1" :to="nav.link">{{nav.name}}</router-link>
                 <a v-else :href="nav.link">{{nav.name}}</a>
               </li>
           </ul>
-          <div class="login-bar full-right">
+
+          <div class="login-bar full-right" v-if="!token">
             <div class="shop-cart full-left">
               <img src="/static/image/cart.svg" alt="">
               <span><router-link to="/cart">购物车</router-link></span>
             </div>
-            <div class="login-box full-left">
+            <div class="login-box2 full-left">
               <router-link to="user/login/"><span>登录</span></router-link>
               &nbsp;|&nbsp;
-              <span>注册</span>
+              <router-link to="/user/register"><span>注册</span></router-link>
             </div>
           </div>
+
+             <div v-else class="login-bar full-right">
+            <div class="shop-cart full-left">
+              <span class="shop-cart-total"></span>
+              <img src="/static/image/cart.svg" alt="">
+              <span><router-link to="/cart">购物车</router-link></span>
+            </div>
+            <div class="login-box login-box1 full-left">
+              <router-link to="">学习中心</router-link>
+              <el-menu width="200" class="member el-menu-demo" mode="horizontal">
+                  <el-submenu index="2">
+                    <template slot="title"><router-link to="/"><img src="/static/image/logo@2x.png" alt=""></router-link></template>
+                    <el-menu-item index="2-1">我的账户</el-menu-item>
+                    <el-menu-item index="2-2"><router-link to="/user/order">我的订单</router-link></el-menu-item>
+                    <el-menu-item index="2-3">我的优惠卷</el-menu-item>
+                    <el-menu-item index="2-3">
+                  <span @click="logoutHander">退出登录</span></el-menu-item>
+                  </el-submenu>
+                </el-menu>
+            </div>
+          </div>
+
         </div>
       </div>
     </div>
@@ -34,19 +55,32 @@
       name: "Header",
       data(){
         return{
+            token:'',
             nav_list:[]
         }
       },
       created(){
+          this.checkUserLogin();
         this.get_head_nav();
       },
       methods:{
         get_head_nav(){
             this.$axios.get(`${this.$settings.Host}/nav/header/`).then(response=>{
-                console.log(response.data);
                 this.nav_list=response.data
             })
-        }
+        },
+          checkUserLogin(){
+            this.token=localStorage.user_token || sessionStorage.user_token
+          },
+          logoutHander(){
+            localStorage.removeItem('user_token');
+            localStorage.removeItem('user_id');
+            localStorage.removeItem('username');
+            sessionStorage.removeItem('user_token');
+            sessionStorage.removeItem('user_id');
+            sessionStorage.removeItem('username');
+            this.checkUserLogin()
+          }
       }
     }
 </script>
@@ -119,6 +153,7 @@
   margin-top: 30px;
   line-height: 32px;
   text-align: center;
+  position: relative;
 }
 .header .login-bar .shop-cart:hover{
   background: #f0f0f0;
@@ -131,8 +166,25 @@
 .header .login-bar .shop-cart span{
   margin-right: 6px;
 }
-.header .login-bar .login-box{
-  margin-top: 33px;
+.header .login-bar .shop-cart-total{
+    width: 16px;
+    height: 16px;
+    line-height: 17px;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    background: #fa6240;
+    border-radius: 50%;
+    transform: scale(.8);
+    position: absolute;
+    left: 16px;
+    top: -1px;
+}
+.header .login-bar .login-box1{
+  margin-top: 16px;
+}
+.header .login-bar .login-box2{
+  margin-top: 34px;
 }
 .header .login-bar .login-box span{
   color: #4a4a4a;
@@ -140,5 +192,19 @@
 }
 .header .login-bar .login-box span:hover{
   color: #000000;
+}
+.member{
+    display: inline-block;
+    height: 34px;
+    margin-left: 20px;
+}
+.member img{
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.member img:hover{
+  border: 1px solid yellow;
 }
 </style>

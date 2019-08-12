@@ -28,5 +28,6 @@ xversion.register_models()
 urlpatterns = [
     path(r'xadmin/', xadmin.site.urls),
     path('',include('home.urls')),
+    path(r'user/',include('users.urls')),
 re_path(r'media/(?P<path>.*)', serve, {"document_root": settings.MEDIA_ROOT}),
 ]

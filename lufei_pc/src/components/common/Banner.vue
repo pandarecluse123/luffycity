@@ -19,7 +19,6 @@
     created: function(){
       // 获取轮播图
       this.$axios.get(`${this.$settings.Host}/banner/`).then(response => {
-        console.log(response.data);
         this.banner_list = response.data
       }).catch(error => {
         console.log(error.response);

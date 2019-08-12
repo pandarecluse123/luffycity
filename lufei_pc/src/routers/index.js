@@ -5,15 +5,22 @@ Vue.use(Router);
 
 import Home from "../components/Home";
 import Login from "../components/Login";
+import Register from "../components/Register";
 
 export default new Router({
   mode:'history',
   routes:[
     {name:'Home',
-    path:'',
+    path:'/',
     component:Home},
+
     {name:'Login',
     path:'/user/login',
-    component:Login}
+    component:Login},
+
+    {name:'Register',
+    path:'/user/register',
+    component:Register},
+
   ]
 })

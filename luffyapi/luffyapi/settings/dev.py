@@ -192,7 +192,12 @@ LOGGING = {
 
 REST_FRAMEWORK = {
     # 异常处理
-    'EXCEPTION_HANDLER': os.path.join(BASE_DIR, 'utils.exceptions.custom_exception_handler')
+    'EXCEPTION_HANDLER': 'luffyapi.utils.exceptions.custom_exception_handler',
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
 }
 
 # CORS组的配置信息
@@ -202,3 +207,18 @@ CORS_ORIGIN_WHITELIST = (
 CORS_ALLOW_CREDENTIALS = True  # 允许ajax跨域请求时携带cookie
 
 AUTH_USER_MODEL = 'users.User'
+
+import datetime
+JWT_AUTH = {
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(days=1),
+    'JWT_RESPONSE_PAYLOAD_HANDLER': 'users.utils.jwt_response_payload_handler',
+}
+
+AUTHENTICATION_BACKENDS = [
+    'users.utils.UsernameMobileAuthBackend',
+]
+
+#极验验证码的配置
+PC_GEETEST_ID = "6e15c7e0b567734b8546325bbba57790"
+PC_GEETEST_KEY = "db327ff2dc1abb8156ce212e7e0ff057"
+PC_GEETEST_USER_ID = 'test'
