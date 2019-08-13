@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'reversion',
 
     'home',
-    'users'
+    'users',
+    'courses',
 ]
 
 MIDDLEWARE = [
@@ -259,6 +260,15 @@ CACHES = {
     "sms_code":{
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/2",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # 'PASSWORD':123,
+        }
+    },
+    # 异步返回结果
+    "sms_result": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/14",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             # 'PASSWORD':123,

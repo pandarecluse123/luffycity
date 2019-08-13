@@ -2955,3 +2955,729 @@ INFO 2019-08-13 19:08:26,700 basehttp 154 "POST /user/ HTTP/1.1" 201 211
 INFO 2019-08-13 19:08:28,273 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
 INFO 2019-08-13 19:08:28,283 basehttp 154 "GET /banner/ HTTP/1.1" 200 117
 INFO 2019-08-13 19:08:28,290 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-13 22:29:44,709 autoreload 597 Watching for file changes with StatReloader
+WARNING 2019-08-13 22:29:55,929 log 228 Bad Request: /user/sms/18980413165/
+WARNING 2019-08-13 22:29:55,930 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 400 56
+ERROR 2019-08-13 22:30:31,674 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 64, in get
+    pipe=redis.pipline()
+AttributeError: 'Redis' object has no attribute 'pipline'
+ERROR 2019-08-13 22:30:31,675 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21662
+INFO 2019-08-13 22:32:50,406 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:32:51,008 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 22:33:53,734 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/settings/dev.py changed, reloading.
+INFO 2019-08-13 22:33:54,556 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 22:34:00,218 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 68, in get
+    pipe.excute()#执行事务
+AttributeError: 'Pipeline' object has no attribute 'excute'
+ERROR 2019-08-13 22:34:00,229 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21672
+INFO 2019-08-13 22:34:33,723 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:34:34,338 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 22:36:37,131 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:36:37,798 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 22:37:52,822 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:37:53,401 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 22:40:26,087 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 22:50:33,391 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:50:33,998 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 22:50:35,764 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 22:54:29,837 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:54:30,399 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 22:55:37,354 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:55:38,111 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 22:55:43,429 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 62, in get
+    sms_return_key='celery-task-meta-'+verify_code
+TypeError: must be str, not AsyncResult
+ERROR 2019-08-13 22:55:43,431 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21652
+INFO 2019-08-13 22:56:17,068 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:56:17,638 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 22:56:20,411 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 63, in get
+    sms_return_key='celery-task-meta-'+verify_code
+TypeError: must be str, not AsyncResult
+ERROR 2019-08-13 22:56:20,412 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21652
+INFO 2019-08-13 22:56:55,532 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:56:56,264 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 22:57:04,267 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 64, in get
+    sms_return_key='celery-task-meta-'+verify_code
+TypeError: must be str, not AsyncResult
+ERROR 2019-08-13 22:57:04,269 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21652
+ERROR 2019-08-13 22:57:25,068 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 64, in get
+    #redis的事务操作(由于每次使用redis都启动一次,使用事务节省支援)
+TypeError: must be str, not AsyncResult
+ERROR 2019-08-13 22:57:25,068 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21692
+INFO 2019-08-13 22:57:25,294 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:57:25,929 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 22:58:06,796 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 22:58:07,330 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 22:58:15,080 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:01:25,764 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/settings/dev.py changed, reloading.
+INFO 2019-08-13 23:01:26,368 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:01:30,832 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:02:49,163 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:02:49,736 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:02:52,954 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:04:19,977 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:04:20,579 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:04:38,455 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:05:49,669 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:05:50,263 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:05:56,953 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:06:08,518 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:06:09,352 autoreload 597 Watching for file changes with StatReloader
+WARNING 2019-08-13 23:06:14,585 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:06:14,586 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+WARNING 2019-08-13 23:06:21,052 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:06:21,053 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+WARNING 2019-08-13 23:06:47,622 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:06:47,622 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:07:01,675 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+WARNING 2019-08-13 23:07:01,682 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:07:01,683 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:08:10,701 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:08:11,542 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:08:27,513 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:09:04,244 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:09:04,914 autoreload 597 Watching for file changes with StatReloader
+WARNING 2019-08-13 23:09:15,066 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:09:15,067 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:09:54,301 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+WARNING 2019-08-13 23:10:18,652 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:10:18,653 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:11:57,283 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:12:35,934 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:12:36,559 autoreload 597 Watching for file changes with StatReloader
+WARNING 2019-08-13 23:12:45,748 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:12:45,749 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:13:20,206 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:16:05,507 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:16:06,285 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 23:16:39,003 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 74, in get
+    result=json.decoder(result).result
+TypeError: 'module' object is not callable
+ERROR 2019-08-13 23:16:39,004 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21646
+INFO 2019-08-13 23:17:22,970 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:17:23,558 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 23:17:56,523 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 74, in get
+    result=json.dumps(result)
+  File "/usr/lib/python3.6/json/__init__.py", line 231, in dumps
+    return _default_encoder.encode(obj)
+  File "/usr/lib/python3.6/json/encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "/usr/lib/python3.6/json/encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "/usr/lib/python3.6/json/encoder.py", line 180, in default
+    o.__class__.__name__)
+TypeError: Object of type 'bytes' is not JSON serializable
+ERROR 2019-08-13 23:17:56,524 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 22089
+INFO 2019-08-13 23:18:21,460 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:18:22,125 autoreload 597 Watching for file changes with StatReloader
+WARNING 2019-08-13 23:18:27,657 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:18:27,657 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:19:01,939 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+WARNING 2019-08-13 23:19:01,945 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:19:01,946 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:19:40,944 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:19:41,744 autoreload 597 Watching for file changes with StatReloader
+WARNING 2019-08-13 23:20:07,874 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:20:07,875 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:20:13,029 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:20:58,336 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:20:58,903 autoreload 597 Watching for file changes with StatReloader
+WARNING 2019-08-13 23:21:29,692 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:21:29,692 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+WARNING 2019-08-13 23:21:33,504 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:21:33,504 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+WARNING 2019-08-13 23:21:40,469 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:21:40,470 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:21:41,354 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+WARNING 2019-08-13 23:22:08,208 log 228 Forbidden: /user/sms/18980413165/
+WARNING 2019-08-13 23:22:08,209 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 403 38
+INFO 2019-08-13 23:22:33,222 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:22:34,018 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:23:04,275 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:23:30,310 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:23:40,055 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:23:40,691 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:24:20,179 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 200 35
+INFO 2019-08-13 23:24:32,284 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:24:33,123 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 23:25:08,568 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:25:08,570 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+ERROR 2019-08-13 23:25:33,447 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:25:33,448 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+ERROR 2019-08-13 23:25:34,599 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:25:34,599 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+ERROR 2019-08-13 23:25:42,810 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:25:42,811 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+ERROR 2019-08-13 23:25:44,970 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:25:44,970 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+ERROR 2019-08-13 23:25:45,150 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 72, in get
+    result=sms_result.get(sms_return_key).decode()
+AttributeError: 'NoneType' object has no attribute 'decode'
+ERROR 2019-08-13 23:25:45,152 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21692
+ERROR 2019-08-13 23:25:45,886 log 228 Internal Server Error: /user/sms/18980413165/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py", line 72, in get
+    result=sms_result.get(sms_return_key).decode()
+AttributeError: 'NoneType' object has no attribute 'decode'
+ERROR 2019-08-13 23:25:45,887 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 21692
+INFO 2019-08-13 23:30:12,016 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 23:30:49,352 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:30:49,352 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+INFO 2019-08-13 23:32:16,384 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/celery_tasks/sms/tasks.py changed, reloading.
+INFO 2019-08-13 23:32:17,024 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 23:34:24,377 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:34:24,377 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+INFO 2019-08-13 23:37:33,154 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:37:33,990 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 23:37:59,614 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:37:59,614 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+ERROR 2019-08-13 23:38:20,191 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:38:20,192 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+INFO 2019-08-13 23:39:41,317 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:39:41,898 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 23:40:09,769 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:40:09,769 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+ERROR 2019-08-13 23:40:27,247 log 228 Internal Server Error: /user/sms/18980413165/
+ERROR 2019-08-13 23:40:27,248 basehttp 154 "GET /user/sms/18980413165/ HTTP/1.1" 500 35
+INFO 2019-08-13 23:42:50,183 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/users/views.py changed, reloading.
+INFO 2019-08-13 23:42:50,849 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:43:54,762 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-13 23:43:54,771 basehttp 154 "GET /banner/ HTTP/1.1" 200 117
+INFO 2019-08-13 23:43:54,772 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-13 23:43:54,820 basehttp 154 "GET /media/banner/the-milky-way-2377474_1920_9TfyhmC.jpg HTTP/1.1" 304 0
+INFO 2019-08-13 23:43:56,071 basehttp 154 "GET /banner/ HTTP/1.1" 200 117
+INFO 2019-08-13 23:43:56,072 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-13 23:43:56,072 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-13 23:44:04,308 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-13 23:44:04,308 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-13 23:52:20,681 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-13 23:52:25,587 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:52:25,633 log 228 Bad Request: /
+WARNING 2019-08-13 23:52:25,633 basehttp 154 "GET / HTTP/1.1" 400 77052
+ERROR 2019-08-13 23:52:25,800 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:52:25,831 log 228 Bad Request: /favicon.ico
+WARNING 2019-08-13 23:52:25,831 basehttp 154 "GET /favicon.ico HTTP/1.1" 400 77097
+ERROR 2019-08-13 23:52:29,253 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:52:29,280 log 228 Bad Request: /ADMIN
+WARNING 2019-08-13 23:52:29,280 basehttp 154 "GET /ADMIN HTTP/1.1" 400 77107
+ERROR 2019-08-13 23:52:29,335 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:52:29,361 log 228 Bad Request: /favicon.ico
+WARNING 2019-08-13 23:52:29,361 basehttp 154 "GET /favicon.ico HTTP/1.1" 400 77102
+ERROR 2019-08-13 23:52:34,598 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:52:34,623 log 228 Bad Request: /ad,om
+WARNING 2019-08-13 23:52:34,624 basehttp 154 "GET /ad,om HTTP/1.1" 400 77107
+ERROR 2019-08-13 23:52:34,692 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:52:34,721 log 228 Bad Request: /favicon.ico
+WARNING 2019-08-13 23:52:34,721 basehttp 154 "GET /favicon.ico HTTP/1.1" 400 77102
+ERROR 2019-08-13 23:52:38,859 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:52:38,883 log 228 Bad Request: /admin/
+WARNING 2019-08-13 23:52:38,884 basehttp 154 "GET /admin/ HTTP/1.1" 400 77118
+ERROR 2019-08-13 23:52:38,956 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:52:38,982 log 228 Bad Request: /favicon.ico
+WARNING 2019-08-13 23:52:38,983 basehttp 154 "GET /favicon.ico HTTP/1.1" 400 77103
+ERROR 2019-08-13 23:53:03,586 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:53:03,611 log 228 Bad Request: /xadmin/
+WARNING 2019-08-13 23:53:03,612 basehttp 154 "GET /xadmin/ HTTP/1.1" 400 77129
+ERROR 2019-08-13 23:53:03,680 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:53:03,707 log 228 Bad Request: /favicon.ico
+WARNING 2019-08-13 23:53:03,707 basehttp 154 "GET /favicon.ico HTTP/1.1" 400 77104
+ERROR 2019-08-13 23:53:07,012 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:53:07,041 log 228 Bad Request: /xadmin/
+WARNING 2019-08-13 23:53:07,042 basehttp 154 "GET /xadmin/ HTTP/1.1" 400 77264
+ERROR 2019-08-13 23:53:07,113 exception 77 Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add '127.0.0.1' to ALLOWED_HOSTS.
+WARNING 2019-08-13 23:53:07,142 log 228 Bad Request: /favicon.ico
+WARNING 2019-08-13 23:53:07,142 basehttp 154 "GET /favicon.ico HTTP/1.1" 400 77104
+WARNING 2019-08-13 23:53:25,418 log 228 Not Found: /
+WARNING 2019-08-13 23:53:25,418 basehttp 154 "GET / HTTP/1.1" 404 2630
+WARNING 2019-08-13 23:53:25,455 log 228 Not Found: /favicon.ico
+WARNING 2019-08-13 23:53:25,456 basehttp 154 "GET /favicon.ico HTTP/1.1" 404 2681
+INFO 2019-08-13 23:53:29,384 basehttp 154 "GET /xadmin/ HTTP/1.1" 200 4354
+INFO 2019-08-13 23:53:29,400 basehttp 154 "GET /static/xadmin/vendor/bootstrap/css/bootstrap.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,401 basehttp 154 "GET /static/xadmin/css/themes/bootstrap-xadmin.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,404 basehttp 154 "GET /static/xadmin/vendor/font-awesome/css/font-awesome.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,406 basehttp 154 "GET /static/xadmin/css/xadmin.responsive.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,407 basehttp 154 "GET /static/xadmin/vendor/jquery-ui/jquery.ui.core.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,411 basehttp 154 "GET /static/xadmin/css/xadmin.plugins.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,418 basehttp 154 "GET /static/xadmin/css/xadmin.main.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,420 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 4361
+INFO 2019-08-13 23:53:29,422 basehttp 154 "GET /static/xadmin/vendor/jquery-ui/jquery.ui.mouse.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,423 basehttp 154 "GET /static/xadmin/vendor/jquery-ui/jquery.ui.widget.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,423 basehttp 154 "GET /static/xadmin/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,443 basehttp 154 "GET /static/xadmin/vendor/jquery-ui/jquery.ui.sortable.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,451 basehttp 154 "GET /static/xadmin/vendor/bootstrap/js/bootstrap.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,463 basehttp 154 "GET /static/xadmin/js/xadmin.main.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,467 basehttp 154 "GET /static/xadmin/js/xadmin.responsive.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,469 basehttp 154 "GET /static/xadmin/vendor/jquery-ui/jquery.ui.effect.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,470 basehttp 154 "GET /static/xadmin/js/xadmin.plugin.themes.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:29,511 basehttp 154 "GET /xadmin/ HTTP/1.1" 200 4354
+INFO 2019-08-13 23:53:29,577 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 4361
+INFO 2019-08-13 23:53:29,683 basehttp 154 "GET /static/xadmin/vendor/font-awesome/fonts/fontawesome-webfont.woff?v=4.0.3 HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:31,558 basehttp 154 "POST /xadmin/ HTTP/1.1" 302 0
+INFO 2019-08-13 23:53:33,091 basehttp 154 "GET /xadmin/ HTTP/1.1" 200 18498
+INFO 2019-08-13 23:53:33,150 basehttp 154 "GET /static/xadmin/js/xadmin.page.dashboard.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:33,151 basehttp 154 "GET /static/xadmin/js/xadmin.plugin.portal.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:33,152 basehttp 154 "GET /static/xadmin/css/xadmin.page.dashboard.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:53:33,155 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:13,501 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/courses/__init__.py changed, reloading.
+INFO 2019-08-13 23:56:13,797 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:56:25,974 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/courses/__init__.py changed, reloading.
+INFO 2019-08-13 23:56:26,416 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-13 23:56:29,719 basehttp 154 "GET /xadmin/ HTTP/1.1" 200 18503
+INFO 2019-08-13 23:56:29,732 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:33,724 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-13 23:56:33,745 basehttp 154 "GET /static/xadmin/css/xadmin.form.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:33,747 basehttp 154 "GET /static/xadmin/js/xadmin.page.form.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:33,750 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:33,758 basehttp 154 "GET /static/xadmin/js/xadmin.plugin.details.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:33,764 basehttp 154 "GET /static/xadmin/js/xadmin.page.list.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:33,766 basehttp 154 "GET /static/xadmin/js/xadmin.plugin.filters.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:33,766 basehttp 154 "GET /static/xadmin/js/xadmin.plugin.bookmark.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:34,472 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 28035
+INFO 2019-08-13 23:56:34,489 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:35,220 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-13 23:56:35,239 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:35,655 basehttp 154 "GET /xadmin/courses/teacher/ HTTP/1.1" 200 28641
+INFO 2019-08-13 23:56:35,671 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:36,066 basehttp 154 "GET /xadmin/courses/coursechapter/ HTTP/1.1" 200 28530
+INFO 2019-08-13 23:56:36,082 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:36,499 basehttp 154 "GET /xadmin/courses/courselesson/ HTTP/1.1" 200 28799
+INFO 2019-08-13 23:56:36,515 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:37,613 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 28035
+INFO 2019-08-13 23:56:37,627 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:40,546 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-13 23:56:40,561 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:41,246 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 28035
+INFO 2019-08-13 23:56:41,260 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:43,035 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-13 23:56:43,050 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:43,532 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 28035
+INFO 2019-08-13 23:56:43,547 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:44,868 basehttp 154 "GET /xadmin/courses/coursecategory/add/ HTTP/1.1" 200 21226
+INFO 2019-08-13 23:56:44,882 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:47,273 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-13 23:56:47,292 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:48,443 basehttp 154 "GET /xadmin/courses/teacher/ HTTP/1.1" 200 28641
+INFO 2019-08-13 23:56:48,457 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:49,297 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-13 23:56:49,310 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:50,914 basehttp 154 "GET /xadmin/courses/coursechapter/ HTTP/1.1" 200 28530
+INFO 2019-08-13 23:56:50,931 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:53,556 basehttp 154 "GET /xadmin/courses/courselesson/ HTTP/1.1" 200 28799
+INFO 2019-08-13 23:56:53,574 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:55,514 basehttp 154 "GET /xadmin/courses/coursechapter/ HTTP/1.1" 200 28530
+INFO 2019-08-13 23:56:55,530 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:57,162 basehttp 154 "GET /xadmin/courses/coursechapter/add/ HTTP/1.1" 200 23345
+INFO 2019-08-13 23:56:57,180 basehttp 154 "GET /static/xadmin/vendor/selectize/selectize.bootstrap3.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:57,182 basehttp 154 "GET /static/xadmin/vendor/selectize/selectize.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:57,183 basehttp 154 "GET /static/xadmin/vendor/select2/select2.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:57,192 basehttp 154 "GET /static/xadmin/js/xadmin.widget.select.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:57,192 basehttp 154 "GET /static/xadmin/vendor/select2/select2.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:57,193 basehttp 154 "GET /static/xadmin/js/xadmin.plugin.quick-form.js HTTP/1.1" 200 7546
+INFO 2019-08-13 23:56:57,193 basehttp 154 "GET /static/xadmin/vendor/selectize/selectize.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:56:57,200 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-13 23:56:57,200 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+WARNING 2019-08-13 23:56:57,295 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-13 23:56:58,626 basehttp 154 "GET /xadmin/courses/teacher/ HTTP/1.1" 200 28641
+INFO 2019-08-13 23:56:58,641 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:56:59,239 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-13 23:56:59,254 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:57:00,550 basehttp 154 "GET /xadmin/courses/course/add/ HTTP/1.1" 200 28951
+INFO 2019-08-13 23:57:00,573 basehttp 154 "GET /static/xadmin/vendor/load-image/load-image.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:57:00,574 basehttp 154 "GET /static/xadmin/vendor/bootstrap-image-gallery/css/bootstrap-image-gallery.css HTTP/1.1" 304 0
+INFO 2019-08-13 23:57:00,581 basehttp 154 "GET /static/xadmin/vendor/bootstrap-image-gallery/js/bootstrap-image-gallery.js HTTP/1.1" 304 0
+WARNING 2019-08-13 23:57:00,582 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-13 23:57:00,585 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-13 23:57:00,685 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-13 23:57:03,918 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 28035
+INFO 2019-08-13 23:57:03,934 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:57:36,993 basehttp 154 "GET /xadmin/courses/coursecategory/add/ HTTP/1.1" 200 21226
+INFO 2019-08-13 23:57:37,007 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-13 23:57:52,606 basehttp 154 "POST /xadmin/courses/coursecategory/add/ HTTP/1.1" 302 0
+INFO 2019-08-13 23:57:52,659 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 30828
+INFO 2019-08-13 23:57:52,718 basehttp 154 "GET /static/xadmin/js/xadmin.plugin.actions.js HTTP/1.1" 304 0
+INFO 2019-08-13 23:57:52,720 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:00:25,743 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 36493
+INFO 2019-08-14 00:00:25,761 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:00:29,049 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-14 00:00:29,067 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:00:29,628 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 36493
+INFO 2019-08-14 00:00:29,642 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:00:31,093 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 29810
+INFO 2019-08-14 00:00:31,109 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:00:33,082 basehttp 154 "GET /xadmin/courses/course/add/ HTTP/1.1" 200 29214
+WARNING 2019-08-14 00:00:33,103 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:00:33,107 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:00:33,194 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:01:44,897 basehttp 154 "GET /xadmin/courses/teacher/add/ HTTP/1.1" 200 5274
+WARNING 2019-08-14 00:01:44,943 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:02:57,299 basehttp 154 "POST /xadmin/courses/teacher/add/ HTTP/1.1" 200 108
+INFO 2019-08-14 00:03:05,370 basehttp 154 "POST /xadmin/courses/course/add/ HTTP/1.1" 302 0
+INFO 2019-08-14 00:03:05,421 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 32595
+INFO 2019-08-14 00:03:05,436 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:03:08,884 basehttp 154 "GET /xadmin/courses/teacher/ HTTP/1.1" 200 28641
+INFO 2019-08-14 00:03:08,898 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:03:27,260 basehttp 154 "GET /xadmin/courses/teacher/add/ HTTP/1.1" 200 25425
+WARNING 2019-08-14 00:03:27,281 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:03:27,285 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:03:27,366 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:03:48,658 basehttp 154 "POST /xadmin/courses/teacher/add/ HTTP/1.1" 302 0
+INFO 2019-08-14 00:03:48,721 basehttp 154 "GET /xadmin/courses/teacher/ HTTP/1.1" 200 31410
+INFO 2019-08-14 00:03:48,789 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:03:50,980 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 32291
+INFO 2019-08-14 00:03:50,997 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:03:53,584 basehttp 154 "GET /xadmin/courses/course/1/update/ HTTP/1.1" 200 30051
+INFO 2019-08-14 00:03:53,608 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:03:53,610 basehttp 154 "GET /media/course/the-milky-way-2377474_1920.jpg HTTP/1.1" 200 934743
+WARNING 2019-08-14 00:03:53,619 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+WARNING 2019-08-14 00:03:53,698 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:04:00,847 basehttp 154 "POST /xadmin/courses/course/1/update/ HTTP/1.1" 302 0
+INFO 2019-08-14 00:04:00,910 basehttp 154 "GET /xadmin/courses/course/? HTTP/1.1" 200 32529
+INFO 2019-08-14 00:04:00,982 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:10:00,733 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:10:00,750 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:10:02,336 basehttp 154 "GET /xadmin/courses/teacher/ HTTP/1.1" 200 31108
+INFO 2019-08-14 00:10:02,351 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:10:03,399 basehttp 154 "GET /xadmin/courses/coursechapter/ HTTP/1.1" 200 28530
+INFO 2019-08-14 00:10:03,414 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:10:04,391 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 36493
+INFO 2019-08-14 00:10:04,406 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:13:55,095 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 36493
+INFO 2019-08-14 00:13:55,111 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:13:56,242 basehttp 154 "GET /xadmin/courses/coursecategory/ HTTP/1.1" 200 36493
+INFO 2019-08-14 00:13:56,258 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:13:56,819 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:13:56,835 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:13:58,610 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:13:58,625 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:13:59,394 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:13:59,409 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:14:02,157 basehttp 154 "GET /xadmin/courses/course/20/update/ HTTP/1.1" 200 30062
+INFO 2019-08-14 00:14:02,168 basehttp 154 "GET /media/course/the-milky-way-2377474_1920.jpg HTTP/1.1" 304 0
+INFO 2019-08-14 00:14:02,174 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:14:02,191 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+WARNING 2019-08-14 00:14:02,256 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:14:10,638 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:15:07,676 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:15:07,690 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:17:02,183 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:17:02,198 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:17:03,530 basehttp 154 "GET /xadmin/courses/course/19/update/ HTTP/1.1" 200 30050
+INFO 2019-08-14 00:17:03,547 basehttp 154 "GET /media/course/the-milky-way-2377474_1920.jpg HTTP/1.1" 304 0
+INFO 2019-08-14 00:17:03,551 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:17:03,558 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+WARNING 2019-08-14 00:17:03,652 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:17:10,540 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:17:11,320 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:17:11,342 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:17:12,315 basehttp 154 "GET /xadmin/courses/course/20/update/ HTTP/1.1" 200 30062
+INFO 2019-08-14 00:17:12,338 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:17:12,358 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+WARNING 2019-08-14 00:17:12,418 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:17:16,082 basehttp 154 "GET /xadmin/courses/course/ HTTP/1.1" 200 51056
+INFO 2019-08-14 00:18:15,566 basehttp 154 "GET /xadmin/courses/teacher/ HTTP/1.1" 200 31108
+INFO 2019-08-14 00:18:15,581 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:18:16,696 basehttp 154 "GET /xadmin/courses/courselesson/ HTTP/1.1" 200 28799
+INFO 2019-08-14 00:18:16,711 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:18:19,795 basehttp 154 "GET /xadmin/courses/courselesson/add/ HTTP/1.1" 200 24130
+WARNING 2019-08-14 00:18:19,815 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:18:19,817 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:18:19,911 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:18:25,187 basehttp 154 "GET /xadmin/courses/coursechapter/ HTTP/1.1" 200 28530
+INFO 2019-08-14 00:18:25,208 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:18:27,193 basehttp 154 "GET /xadmin/courses/coursechapter/add/ HTTP/1.1" 200 24157
+WARNING 2019-08-14 00:18:27,208 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:18:27,215 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:18:27,285 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:18:29,717 basehttp 154 "GET /xadmin/courses/courselesson/ HTTP/1.1" 200 28799
+INFO 2019-08-14 00:18:29,730 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:19:17,366 basehttp 154 "GET /xadmin/courses/courselesson/add/ HTTP/1.1" 200 24130
+WARNING 2019-08-14 00:19:17,385 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:19:17,390 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:19:17,470 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:19:21,916 basehttp 154 "GET /xadmin/courses/coursechapter/ HTTP/1.1" 200 28530
+INFO 2019-08-14 00:19:21,933 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+INFO 2019-08-14 00:19:23,155 basehttp 154 "GET /xadmin/courses/coursechapter/add/ HTTP/1.1" 200 24157
+WARNING 2019-08-14 00:19:23,169 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:19:23,174 basehttp 154 "GET /xadmin/jsi18n/ HTTP/1.1" 200 7722
+WARNING 2019-08-14 00:19:23,245 basehttp 154 "GET /static/xadmin/vendor/select2/select2_locale_zh-Hans.js HTTP/1.1" 404 1772
+INFO 2019-08-14 00:28:52,418 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/urls.py changed, reloading.
+INFO 2019-08-14 00:28:52,998 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-14 00:29:41,189 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/courses/urls.py changed, reloading.
+INFO 2019-08-14 00:29:41,686 autoreload 597 Watching for file changes with StatReloader
+ERROR 2019-08-14 00:29:45,405 log 228 Internal Server Error: /courses/category/
+Traceback (most recent call last):
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/decorators/csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/views/generic/base.py", line 71, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 497, in dispatch
+    response = self.handle_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 457, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 468, in raise_uncaught_exception
+    raise exc
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/views.py", line 494, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/generics.py", line 199, in get
+    return self.list(request, *args, **kwargs)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/mixins.py", line 46, in list
+    return Response(serializer.data)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 757, in data
+    ret = super().data
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 261, in data
+    self._data = self.to_representation(self.instance)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 675, in to_representation
+    self.child.to_representation(item) for item in iterable
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 675, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 511, in to_representation
+    for field in fields:
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 372, in _readable_fields
+    for field in self.fields.values():
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/django/utils/functional.py", line 80, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 360, in fields
+    for key, value in self.get_fields().items():
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 1022, in get_fields
+    field_names = self.get_field_names(declared_fields, info)
+  File "/home/moluo/.virtualenvs/luffy/lib/python3.6/site-packages/rest_framework/serializers.py", line 1099, in get_field_names
+    serializer_class=self.__class__.__name__
+AssertionError: ("Creating a ModelSerializer without either the 'fields' attribute or the 'exclude' attribute has been deprecated since 3.3.0, and is now disallowed. Add an explicit fields = '__all__' to the CourseCategoryModelSerializer serializer.",)
+ERROR 2019-08-14 00:29:45,407 basehttp 154 "GET /courses/category/ HTTP/1.1" 500 23797
+INFO 2019-08-14 00:30:18,545 autoreload 217 /home/moluo/Desktop/luffy/luffyapi/luffyapi/apps/courses/serializers.py changed, reloading.
+INFO 2019-08-14 00:30:19,052 autoreload 597 Watching for file changes with StatReloader
+INFO 2019-08-14 00:30:22,365 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:36:24,358 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-14 00:36:24,369 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-14 00:36:24,372 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:36:36,239 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-14 00:36:36,244 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:36:36,248 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-14 00:42:18,044 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:43:48,008 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:45:44,630 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:46:10,729 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:47:18,673 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:50:25,428 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:51:04,880 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:53:24,090 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:53:43,221 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:54:01,003 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:54:03,163 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 00:56:53,635 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 01:00:47,068 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 01:00:47,082 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-14 01:00:47,085 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-14 01:03:03,800 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-14 01:03:03,801 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-14 01:03:03,802 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 01:03:42,276 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-14 01:03:42,278 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
+INFO 2019-08-14 01:03:42,279 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 01:04:36,252 basehttp 154 "GET /nav/header/ HTTP/1.1" 200 114
+INFO 2019-08-14 01:04:36,261 basehttp 154 "GET /courses/category/ HTTP/1.1" 200 201
+INFO 2019-08-14 01:04:36,263 basehttp 154 "GET /nav/footer/ HTTP/1.1" 200 123
