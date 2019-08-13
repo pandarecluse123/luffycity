@@ -6,8 +6,11 @@
         <div class="register-title">注册路飞学城</div>
 				<div class="inp">
 					<input v-model="mobile" type="text" placeholder="手机号码" class="user">
-          <input v-model="password" type="password" placeholder="输入密码" class="user">
-					<input v-model="sms" type="text" placeholder="输入验证码" class="user">
+          <input v-model="password" type="password" placeholder="输入密码" class="user" >
+					<div class="sms_code">
+          <input v-model="sms" type="text" placeholder="输入验证码" class="user" maxlength="6">
+             <span class="code_text" @click="send_sms">{{sms_tips}}</span>
+            </div>
           <div id="geetest"></div>
 					<button class="register_btn"  @click="registerHander">注册</button>
 					<p class="go_login" >已有账号 <router-link to="/user/login">直接登录</router-link></p>
@@ -26,6 +29,8 @@ export default {
         sms:"",
         mobile:"",
         validateResult:false,
+        is_sms:false,
+        sms_tips:'点击发送短信'
     }
   },
   created(){
@@ -33,14 +38,17 @@ export default {
   methods:{
       registerHander(){
           if(!/1[3-9]\d{9}/.test(this.mobile)){
-              this.$message("对不起,手机有误")
+              this.$message("对不起,手机有误");
+              return false
           }
         if( this.password.length < 6 || this.password.length > 16 ){
               this.$message("对不起，密码必须保持6-16位字符之间");
+              return false
           }
 
           if(this.sms.length != 6){
               this.$message("对不起，短信验证码有误！");
+              return false
           }
           this.$axios.post(`${this.$settings.Host}/user/`,{
                mobile:this.mobile,
@@ -56,6 +64,34 @@ export default {
                       self.$router.push("/");
                   }
               })
+          })
+      },
+      send_sms(){
+          let mobile=this.mobile;
+          if(!/1[3-9]\d{9}/.test(mobile)){
+              this.$message('输入的电话号码有误,请核对');
+              return false
+          }
+          if(this.is_sms){
+              this.$message('对不起,发送短信过于频繁,请60秒后再试');
+              return
+          }
+          this.$axios.get(`${this.$settings.Host}/user/sms/${mobile}/`).then(response=>{
+            let inter_time=60;
+            this.is_sms=true;
+            let timer=setInterval(()=>{
+                if(inter_time<1){
+                    this.is_sms=false;
+                    clearInterval(timer);
+                    this.sms_tips='点击发送短信'
+              }else{
+                    inter_time--;
+                    this.sms_tips=`${inter_time}后再次点击`
+                }
+            },1000);
+              this.$message(response.data.message)
+          }).catch(error=>{
+              this.$message(error.response.data.message)
           })
       }
   },
@@ -213,5 +249,17 @@ export default {
 .inp .go_login span{
     color: #84cc39;
     cursor: pointer;
+}
+  .sms_code{
+    position: relative;
+}
+.code_text{
+    position: absolute;
+    right: 14px;
+    top: 13px;
+    border-left: 1px solid orange;
+    padding-left: 14px;
+    cursor: pointer;
+    background-color: #fff;
 }
 </style>

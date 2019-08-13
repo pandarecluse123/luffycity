@@ -30,6 +30,9 @@ class UserModelSerializer(serializers.ModelSerializer):
         validated_data["username"] = validated_data["mobile"]
         #调用当前模型序列化器的create
         user = super().create(validated_data)
+        user.set_password(user.password)
+        user.save()
+
 
         from rest_framework_jwt.settings import api_settings
         jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
