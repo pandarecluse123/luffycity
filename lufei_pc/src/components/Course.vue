@@ -17,7 +17,7 @@
             <li class="hot" :class="is_change('students',filter.ordering)" @click="change('students')">人气</li>
             <li class="price " :class="is_change('price',filter.ordering)" @click="change('price')">价格</li>
           </ul>
-          <p class="condition-result">共{{category_list.length}}个课程</p>
+          <p class="condition-result">共{{course_list.length}}个课程</p>
         </div>
 
       </div>
@@ -43,6 +43,14 @@
         </div>
       </div>
     </div>
+    <el-pagination
+  background
+  layout="prev, pager, next"
+  :page-size='filter.size'
+  @current-change="pagechange"
+  :total="total"
+    :hide-on-single-page=true>
+  </el-pagination>
     <Footer></Footer>
   </div>
 </template>
@@ -54,11 +62,14 @@
       name: "Course",
       data() {
           return {
+              total:0,
               category_list: [],
               course_list: [],
               filter: {
                   course_category: 0,
                   ordering: '-id',
+                  page:1,
+                  size:5
               }
           }
       },
@@ -72,9 +83,13 @@
       },
       watch: {
           'filter.course_category': function () {
+              this.filter.page=1
               this.get_course_list()
           },
           'filter.ordering':function () {
+              this.get_course_list()
+          },
+          'filter.page':function () {
               this.get_course_list()
           }
       },
@@ -87,7 +102,9 @@
           },
           get_course_list() {
               let params = {
-                  ordering: this.filter.ordering
+                  ordering: this.filter.ordering,
+                  page:this.filter.page,
+                  size:this.filter.size,
               };
               if (this.filter.course_category > 0) {
                   params.course_category = this.filter.course_category
@@ -95,7 +112,10 @@
               this.$axios.get(`${this.$settings.Host}/courses/course/`, {
                   params
               }).then(response => {
-                  this.course_list = response.data
+                  this.course_list = response.data.results,
+                  this.total=response.data.count
+              }).catch(error=>{
+                  console.log(error.response.data)
               })
           },
           is_change(type, ordering) {
@@ -133,6 +153,9 @@
                   }else {
                   this.filter.ordering = 'price'}
               }
+          },
+          pagechange(page){
+              this.filter.page=page
           }
       }
   }
@@ -411,4 +434,9 @@
   .course .ordering .this_asc::before{
     border-bottom-color: #ffc210;
   }
+  .el-pagination {
+    text-align: center;
+    margin-top: 66px;
+    margin-bottom: 66px;
+}
 </style>

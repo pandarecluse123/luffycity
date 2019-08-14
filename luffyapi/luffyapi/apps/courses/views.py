@@ -4,6 +4,7 @@ from rest_framework.generics import ListAPIView
 from .models import CourseCategory,Course
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import OrderingFilter
+from .pagenations import CustomPagination
 
 class CourseCategoryApiView(ListAPIView):
     queryset =CourseCategory.objects.filter(is_delete=False,is_show=True).order_by('orders')
@@ -16,3 +17,5 @@ class CourseApiView(ListAPIView):
     filter_backends = [DjangoFilterBackend,OrderingFilter]
     filter_fields=['course_category']
     ordering_fields=['id','students','price']
+    pagination_class = CustomPagination
+
