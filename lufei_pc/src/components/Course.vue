@@ -6,103 +6,37 @@
       <div class="condition">
         <ul class="cate-list">
           <li class="title">课程分类:</li>
-          <li :class="filter.category==0?'this':''" @click="filter.category=0">全部</li>
-          <li v-for="category in category_list" :key="category.id" :class="filter.category==category.id?'this':''" @click="filter.category=category.id">{{category.name}}</li>
+          <li :class="filter.course_category==0?'this':''" @click="filter.course_category=0">全部</li>
+          <li v-for="category in category_list" :key="category.id" :class="filter.course_category==category.id?'this':''" @click="filter.course_category=category.id">{{category.name}}</li>
         </ul>
 
         <div class="ordering">
           <ul>
             <li class="title">筛&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;选: </li>
-            <li class="default this">默认</li>
-            <li class="hot this">人气</li>
-            <li class="price this">价格</li>
+            <li class="default" :class="is_change('id',filter.ordering)" @click="change('id')">默认</li>
+            <li class="hot" :class="is_change('students',filter.ordering)" @click="change('students')">人气</li>
+            <li class="price " :class="is_change('price',filter.ordering)" @click="change('price')">价格</li>
           </ul>
-          <p class="condition-result">共21个课程</p>
+          <p class="condition-result">共{{category_list.length}}个课程</p>
         </div>
 
       </div>
       <!-- 课程列表 -->
       <div class="course-list">
-        <div class="course-item">
+        <div v-cloak class="course-item" v-for="course in course_list" :key="course.id">
           <div class="course-image">
-            <img src="/static/image/course-cover.jpeg" alt="">
+            <img :src="course.course_img" :alt="course.name">
           </div>
           <div class="course-info">
-            <h3><router-link to="/course/detail/1">Python开发21天入门</router-link> <span><img src="/static/image/avatar1.svg" alt="">100人已加入学习</span></h3>
-            <p class="teather-info">Alex 金角大王 老男孩Python教学总监 <span>共154课时/更新完成</span></p>
+            <h3><router-link :to='`/course/detail/${course.id}`'>{{course.name}}</router-link> <span><img src="/static/image/avatar1.svg" alt="">{{course.students}}人已加入学习</span></h3>
+            <p class="teather-info">{{course.teacher.name}} {{course.teacher.signature}} {{course.teacher.title}} <span>共{{course.lessons}}课时/{{course.lessons==course.pub_lessons?'更新完成':`更新${course.pub_lessons}课时`}}</span></p>
             <ul class="lesson-list">
-              <li><span class="lesson-title">01 | 第1节：初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码初识编码初识编码初识编码</span> <span class="free">免费</span></li>
+              <li v-for="lesson,key in course.lesson_list"><span class="lesson-title">{{key+1}} | 第{{lesson.capture}}章：{{lesson.name}}</span> <span class="free">免费</span></li>
             </ul>
             <div class="pay-box">
               <span class="discount-type">限时免费</span>
               <span class="discount-price">￥0.00元</span>
-              <span class="original-price">原价：9.00元</span>
-              <span class="buy-now">立即购买</span>
-            </div>
-          </div>
-        </div>
-        <div class="course-item">
-          <div class="course-image">
-            <img src="/static/image/course-cover.jpeg" alt="">
-          </div>
-          <div class="course-info">
-            <h3>Python开发21天入门 <span><img src="/static/image/avatar1.svg" alt="">100人已加入学习</span></h3>
-            <p class="teather-info">Alex 金角大王 老男孩Python教学总监 <span>共154课时/更新完成</span></p>
-            <ul class="lesson-list">
-              <li><span class="lesson-title">01 | 第1节：初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码初识编码初识编码初识编码</span> <span class="free">免费</span></li>
-            </ul>
-            <div class="pay-box">
-              <span class="discount-type">限时免费</span>
-              <span class="discount-price">￥0.00元</span>
-              <span class="original-price">原价：9.00元</span>
-              <span class="buy-now">立即购买</span>
-            </div>
-          </div>
-        </div>
-        <div class="course-item">
-          <div class="course-image">
-            <img src="/static/image/course-cover.jpeg" alt="">
-          </div>
-          <div class="course-info">
-            <h3>Python开发21天入门 <span><img src="/static/image/avatar1.svg" alt="">100人已加入学习</span></h3>
-            <p class="teather-info">Alex 金角大王 老男孩Python教学总监 <span>共154课时/更新完成</span></p>
-            <ul class="lesson-list">
-              <li><span class="lesson-title">01 | 第1节：初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码初识编码初识编码初识编码</span> <span class="free">免费</span></li>
-            </ul>
-            <div class="pay-box">
-              <span class="discount-type">限时免费</span>
-              <span class="discount-price">￥0.00元</span>
-              <span class="original-price">原价：9.00元</span>
-              <span class="buy-now">立即购买</span>
-            </div>
-          </div>
-        </div>
-        <div class="course-item">
-          <div class="course-image">
-            <img src="/static/image/course-cover.jpeg" alt="">
-          </div>
-          <div class="course-info">
-            <h3>Python开发21天入门 <span><img src="/static/image/avatar1.svg" alt="">100人已加入学习</span></h3>
-            <p class="teather-info">Alex 金角大王 老男孩Python教学总监 <span>共154课时/更新完成</span></p>
-            <ul class="lesson-list">
-              <li><span class="lesson-title">01 | 第1节：初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码</span> <span class="free">免费</span></li>
-              <li><span class="lesson-title">01 | 第1节：初识编码初识编码初识编码初识编码</span> <span class="free">免费</span></li>
-            </ul>
-            <div class="pay-box">
-              <span class="discount-type">限时免费</span>
-              <span class="discount-price">￥0.00元</span>
-              <span class="original-price">原价：9.00元</span>
+              <span class="original-price">原价：{{course.price}}元</span>
               <span class="buy-now">立即购买</span>
             </div>
           </div>
@@ -118,27 +52,87 @@
   import Footer from "./common/Footer"
   export default {
       name: "Course",
-      data(){
-        return{
-          category_list:[],
-            filter:{
-              category:0
-            }
-        }
+      data() {
+          return {
+              category_list: [],
+              course_list: [],
+              filter: {
+                  course_category: 0,
+                  ordering: '-id',
+              }
+          }
       },
-      components:{
-        Header,
-        Footer,
+      components: {
+          Header,
+          Footer,
       },
       created() {
           this.get_category_list()
+          this.get_course_list()
       },
-      methods:{
-          get_category_list(){
-              this.$axios.get(`${this.$settings.Host}/courses/category/`).then(response=>{
-                  this.category_list=response.data;
+      watch: {
+          'filter.course_category': function () {
+              this.get_course_list()
+          },
+          'filter.ordering':function () {
+              this.get_course_list()
+          }
+      },
+      methods: {
+          get_category_list() {
+              this.$axios.get(`${this.$settings.Host}/courses/category/`).then(response => {
+                  this.category_list = response.data;
                   }
               )
+          },
+          get_course_list() {
+              let params = {
+                  ordering: this.filter.ordering
+              };
+              if (this.filter.course_category > 0) {
+                  params.course_category = this.filter.course_category
+              }
+              this.$axios.get(`${this.$settings.Host}/courses/course/`, {
+                  params
+              }).then(response => {
+                  this.course_list = response.data
+              })
+          },
+          is_change(type, ordering) {
+              if (type == 'id') {
+                  if (ordering == '-id') {
+                      return `this this_desc`
+                  }else if(ordering == 'id'){
+                  return `this this_asc`}
+              } else if (type == 'students') {
+                  if (ordering == '-students') {
+                      return `this this_desc`
+                  }else if(ordering == 'students'){
+                  return `this this_asc`}
+              } else if (type == 'price') {
+                  if (ordering == '-price') {
+                      return `this this_desc`
+                  }else if(ordering == 'price'){
+                  return `this this_asc`}
+              }
+          },
+          change(type) {
+              if (type == 'id') {
+                  if (this.filter.ordering == 'id') {
+                      this.filter.ordering = '-id'
+                  }else {
+                  this.filter.ordering = 'id'}
+              } else if (type == 'students') {
+                  if (this.filter.ordering == 'students') {
+                      this.filter.ordering = '-students'
+                  }else{
+                  this.filter.ordering = 'students'}
+              } else if (type == 'price') {
+                  if (this.filter.ordering == 'price') {
+                      this.filter.ordering = '-price'
+                  }else {
+                  this.filter.ordering = 'price'}
+              }
           }
       }
   }
@@ -239,8 +233,8 @@
   .course .ordering .price{
     position: relative;
   }
-  .course .ordering .price::before,
-  .course .ordering .price::after{
+  .course .ordering .this::before,
+  .course .ordering .this::after{
     cursor: pointer;
     content:"";
     display: block;
@@ -250,12 +244,12 @@
     position: absolute;
     right: 0;
   }
-  .course .ordering .price::before{
+  .course .ordering .this::before{
     border-bottom: 5px solid #aaa;
     margin-bottom: 2px;
     top: 2px;
   }
-  .course .ordering .price::after{
+  .course .ordering .this::after{
     border-top: 5px solid #aaa;
     bottom: 2px;
   }
@@ -286,13 +280,14 @@
     margin-right: 30px;
   }
   .course .course-item .course-image img{
+    max-height: 100%;
     width: 100%;
   }
   .course .course-item .course-info{
     float: left;
     width: 596px;
   }
-  .course-item .course-info h3 {
+  .course-item .course-info h3,a {
     font-size: 26px;
     color: #333;
     font-weight: normal;
@@ -409,5 +404,11 @@
     color: #fff;
     background: #ffc210;
     border: 1px solid #ffc210;
+  }
+  .course .ordering .this_desc::after{
+    border-top-color: #ffc210;
+  }
+  .course .ordering .this_asc::before{
+    border-bottom-color: #ffc210;
   }
 </style>

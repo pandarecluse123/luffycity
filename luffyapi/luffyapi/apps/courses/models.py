@@ -57,6 +57,23 @@ class Course(BaseModel):
         verbose_name = "专题课程"
         verbose_name_plural = "专题课程"
 
+    @property
+    def lesson_list(self):
+        lesson_list=self.courselessons.filter(is_show_list=True,).order_by('chapter_id')[:4]
+        data=[]
+
+        if len(lesson_list)<1:
+            return data
+
+        for lesson in lesson_list:
+            data.append({
+                'name':lesson.name,
+                'id':lesson.id,
+                'capture':lesson.chapter.chapter,
+                'free_trail':True if lesson.free_trail==True else False
+            })
+        return data
+
     def __str__(self):
         return "%s" % self.name
 
@@ -117,7 +134,9 @@ class CourseLesson(BaseModel):
     duration = models.CharField(verbose_name="视频时长", blank=True, null=True, max_length=32)  # 仅在前端展示使用
     pub_date = models.DateTimeField(verbose_name="发布时间", auto_now_add=True)
     free_trail = models.BooleanField(verbose_name="是否可试看", default=False)
-
+    is_show_list=models.BooleanField(verbose_name='是否展示到列表页',default=False)
+    course=models.ForeignKey('Course',related_name='courselessons',on_delete=models.CASCADE,verbose_name='课程名称')
+    chapter_nb=models
     class Meta:
         db_table = "ly_course_lesson"
         verbose_name = "课程课时"

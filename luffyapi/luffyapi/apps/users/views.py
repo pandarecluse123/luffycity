@@ -60,6 +60,7 @@ class SMSCodeAPIView(APIView):
         from celery_tasks.sms.tasks import send_sms
         verify_code=send_sms.delay(mobile,sms_code)
         sms_return_key='celery-task-meta-'+str(verify_code)
+
         # redis的事务操作(由于每次使用redis都启动一次,使用事务节省支援)
         pipe=redis.pipeline()
         pipe.multi()#开启事务
@@ -68,9 +69,11 @@ class SMSCodeAPIView(APIView):
         pipe.execute()#执行事务
 
         #拼接,等待
+
         sms_result=get_redis_connection('sms_result')
-        time.sleep(26)
+        time.sleep(2)
         result=sms_result.get(sms_return_key).decode()
+        print(result)
         result=json.loads(result).get('result')
 
 

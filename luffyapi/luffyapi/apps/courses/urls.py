@@ -3,5 +3,6 @@ from .views import *
 
 
 urlpatterns = [
-   path(r'category/',CourseCategoryApiView.as_view())
+   path(r'category/',CourseCategoryApiView.as_view()),
+   path(r'course/',CourseApiView.as_view())
 ]
