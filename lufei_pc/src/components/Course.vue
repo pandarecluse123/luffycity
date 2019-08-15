@@ -28,7 +28,7 @@
             <img :src="course.course_img" :alt="course.name">
           </div>
           <div class="course-info">
-            <h3><router-link :to='`/course/detail/${course.id}`'>{{course.name}}</router-link> <span><img src="/static/image/avatar1.svg" alt="">{{course.students}}人已加入学习</span></h3>
+            <h3><router-link :to='`/course/${course.id}`'>{{course.name}}</router-link> <span><img src="/static/image/avatar1.svg" alt="">{{course.students}}人已加入学习</span></h3>
             <p class="teather-info">{{course.teacher.name}} {{course.teacher.signature}} {{course.teacher.title}} <span>共{{course.lessons}}课时/{{course.lessons==course.pub_lessons?'更新完成':`更新${course.pub_lessons}课时`}}</span></p>
             <ul class="lesson-list">
               <li v-for="lesson,key in course.lesson_list"><span class="lesson-title">{{key+1}} | 第{{lesson.capture}}章：{{lesson.name}}</span> <span class="free">免费</span></li>

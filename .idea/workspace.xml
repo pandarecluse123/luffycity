@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5cab996-2701-415d-a5df-3f7b0a1e6fba" name="Default Changelist" comment="" />
+    <list default="true" id="a5cab996-2701-415d-a5df-3f7b0a1e6fba" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/luffyapi/luffyapi/utils/exceptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/luffyapi/luffyapi/utils/exceptions.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +25,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lufei_pc" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
@@ -98,6 +100,7 @@
       <updated>1564986065139</updated>
       <workItem from="1564986066323" duration="1762000" />
       <workItem from="1565101019376" duration="219000" />
+      <workItem from="1565857729552" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="前后端域名配置,跨域支持">
       <created>1565101097002</created>

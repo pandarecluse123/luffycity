@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'reversion',
     'django_filters',
+    'ckeditor',
+    'ckeditor_uploader',
 
     'home',
     'users',
@@ -280,3 +282,28 @@ CACHES = {
 # 设置xadmin用户登录时,登录信息session保存到redis
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "session"
+
+
+# 富文本编辑器ckeditor配置
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',  # 工具条功能
+        'height': 300,      # 编辑器高度
+        # 'width': 300,     # 编辑器宽
+    },
+}
+
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'Custom',
+#         'toolbar_Custom': [
+#             ['Bold', 'Italic', 'Underline'],
+#             ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+#             ['Link', 'Unlink'],
+#             ['RemoveFormat', 'Source']
+#         ]
+#     }
+# }
+
+CKEDITOR_UPLOAD_PATH = ''
+CKEDITOR_UPLOAD_URL = "http://api.luffycity.cn:8000"

@@ -1,5 +1,7 @@
 from django.db import models
 from luffyapi.utils.models import BaseModel
+from ckeditor_uploader.fields import RichTextUploadingField
+from django.conf import settings
 # Create your models here.
 class CourseCategory(BaseModel):
     """
@@ -39,8 +41,10 @@ class Course(BaseModel):
     name = models.CharField(max_length=128, verbose_name="课程名称")
     course_img = models.ImageField(upload_to="course", max_length=255, verbose_name="封面图片", blank=True, null=True)
     course_type = models.SmallIntegerField(choices=course_type,default=0, verbose_name="付费类型")
+    course_video = models.FileField(upload_to="course", max_length=255, verbose_name="封面视频", blank=True, null=True)
     # 使用这个字段的原因
-    brief = models.TextField(max_length=2048, verbose_name="详情介绍", null=True, blank=True)
+    # brief = models.TextField(max_length=2048, verbose_name="详情介绍", null=True, blank=True)
+    brief = RichTextUploadingField(max_length=2048, verbose_name="详情介绍", null=True, blank=True)
     level = models.SmallIntegerField(choices=level_choices, default=1, verbose_name="难度等级")
     pub_date = models.DateField(verbose_name="发布日期", auto_now_add=True)
     period = models.IntegerField(verbose_name="建议学习周期(day)", default=7)
@@ -69,8 +73,36 @@ class Course(BaseModel):
             data.append({
                 'name':lesson.name,
                 'id':lesson.id,
-                'capture':lesson.chapter.chapter,
+                'chapter':lesson.chapter.chapter,
                 'free_trail':True if lesson.free_trail==True else False
+            })
+        return data
+    @property
+    def level_name(self):
+        return self.level_choices[self.level][1]
+
+    @property
+    def real_brief(self):
+        return self.brief.replace("/media",settings.CKEDITOR_UPLOAD_URL+"/media")
+
+    @property
+    def chapter_list(self):
+        chapter_list=self.coursechapters.filter(is_delete=False,is_show=True).order_by('chapter')
+        data=[]
+        for chapter in chapter_list:
+            chapter_lesson=chapter.coursesections.filter(is_delete=False,is_show=True)
+            lesson_list=[]
+            for lesson in chapter_lesson:
+                lesson_list.append({
+                    'id':lesson.id,
+                    'name':lesson.name,
+                    'section_type':lesson.section_type,
+                    'free_trail':lesson.free_trail
+                })
+            data.append({
+                'chapter':chapter.chapter,
+                'name':chapter.name,
+                'lesson_list':lesson_list,
             })
         return data
 

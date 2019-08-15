@@ -18,6 +18,12 @@ Vue.config.productionTip = false;
 Vue.prototype.$settings = settings;
 Vue.use(ElementUI);
 
+require('video.js/dist/video-js.css');
+require('vue-video-player/src/custom-theme.css');
+import VideoPlayer from 'vue-video-player'
+Vue.use(VideoPlayer);
+
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

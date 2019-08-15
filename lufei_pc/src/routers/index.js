@@ -7,6 +7,7 @@ import Home from "../components/Home";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import Course from "../components/Course";
+import Detail from "../components/Detail";
 
 export default new Router({
   mode:'history',
@@ -27,5 +28,8 @@ export default new Router({
     path:'/course',
     component:Course},
 
+     {name:'Detail',
+    path:'/course/:course',
+    component:Detail},
   ]
 })
