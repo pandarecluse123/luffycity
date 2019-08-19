@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'home',
     'users',
     'courses',
+    'cart',
 ]
 
 MIDDLEWARE = [
@@ -276,6 +277,14 @@ CACHES = {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             # 'PASSWORD':123,
         }
+    },
+    "cart": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/3",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # 'PASSWORD':123,
+        }
     }
 }
 
@@ -307,3 +316,4 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_UPLOAD_PATH = ''
 CKEDITOR_UPLOAD_URL = "http://api.luffycity.cn:8000"
+DOMAL_IMAGE_URL='http://api.luffycity.cn:8000'

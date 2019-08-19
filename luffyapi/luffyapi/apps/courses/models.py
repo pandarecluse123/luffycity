@@ -3,6 +3,8 @@ from luffyapi.utils.models import BaseModel
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.conf import settings
 # Create your models here.
+
+
 class CourseCategory(BaseModel):
     """
     课程分类
@@ -77,6 +79,7 @@ class Course(BaseModel):
                 'free_trail':True if lesson.free_trail==True else False
             })
         return data
+
     @property
     def level_name(self):
         return self.level_choices[self.level][1]

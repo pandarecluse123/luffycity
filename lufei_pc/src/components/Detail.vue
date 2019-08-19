@@ -28,10 +28,10 @@
             </p>
             <div class="buy">
               <div class="buy-btn">
-                <button class="buy-now">立即购买</button>
+                <button class="buy-now" @click="addCartHeader">立即购买</button>
                 <button class="free">免费试学</button>
               </div>
-              <div class="add-cart"><img src="/static/image/cart-yellow.svg" alt="">加入购物车</div>
+              <div class="add-cart" @click="addCartHeader"><img src="/static/image/cart-yellow.svg" alt="">加入购物车</div>
             </div>
           </div>
         </div>
@@ -152,6 +152,26 @@ export default {
               this.playerOptions.sources[0].src = response.data.course_video;
           }).catch(error=>{
 
+          })
+      },
+      addCartHeader(){
+            let user_token=localStorage.getItem('user_token') || sessionStorage.getItem('user_token');
+            if(!user_token){
+                this.$confirm('对不起,请登录后继续操作','警告').then(()=>{
+                     this.$router.push('/user/login/');
+                });
+                return false
+            }
+            this.$axios.post(`${this.$settings.Host}/cart/course/add_course/`,{
+                'course_id':this.course_id
+            },{headers:{
+                'Authorization':'jwt '+user_token
+                }}).then(response=>{
+                this.$message(response.data.message);
+                // this.$store.state.total=response.data.total
+                this.$store.commit('get_total',response.data.total)
+          }).catch(error=>{
+                this.$message(error.response.data.message)
           })
       }
     },

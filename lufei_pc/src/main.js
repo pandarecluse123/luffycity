@@ -8,6 +8,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'; // 从node_modules目录中导入包
 import '../static/js/gt'//导入极验验证码js文件
+import store from './store/index'
 
 // 允许ajax发送请求时附带cookie
 axios.defaults.withCredentials = true;
@@ -29,6 +30,7 @@ new Vue({
   el: '#app',
   components: { App },
   router,
+  store,
   template: '<App/>'
 });
 

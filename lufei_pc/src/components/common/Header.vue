@@ -8,7 +8,7 @@
           <ul class="nav full-left">
               <li v-for="nav,key in nav_list" :key="key">
                   <router-link v-if="nav.link.search('://') == -1" :to="nav.link">{{nav.name}}</router-link>
-                <a v-else :href="nav.link">{{nav.name}}</a>
+                  <a v-else :href="nav.link">{{nav.name}}</a>
               </li>
           </ul>
 
@@ -18,15 +18,15 @@
               <span><router-link to="/cart">购物车</router-link></span>
             </div>
             <div class="login-box2 full-left">
-              <router-link to="user/login/"><span>登录</span></router-link>
+              <router-link to="/user/login/"><span>登录</span></router-link>
               &nbsp;|&nbsp;
               <router-link to="/user/register"><span>注册</span></router-link>
             </div>
           </div>
 
-             <div v-else class="login-bar full-right">
+             <div v-if="token" class="login-bar full-right">
             <div class="shop-cart full-left">
-              <span class="shop-cart-total"></span>
+              <span class="shop-cart-total">{{$store.state.total}}</span>
               <img src="/static/image/cart.svg" alt="">
               <span><router-link to="/cart">购物车</router-link></span>
             </div>
