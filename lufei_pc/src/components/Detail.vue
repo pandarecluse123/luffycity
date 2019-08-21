@@ -17,15 +17,19 @@
           <div class="wrap-right">
             <h3 class="course-name">{{course.name}}</h3>
             <p class="data">{{course.students}}人在学&nbsp;&nbsp;&nbsp;&nbsp;课程总时长：{{course.pub_lessons}}课时/{{course.lessons}}课时&nbsp;&nbsp;&nbsp;&nbsp;难度：{{course.level_name}}</p>
-            <div class="sale-time">
-              <p class="sale-type">限时免费</p>
-              <p class="expire">距离结束：仅剩 01天 04小时 33分 <span class="second">08</span> 秒</p>
+            <div class="sale-time" v-if="course.active_time">
+              <p class="sale-type">{{course.discount_name}}</p>
+              <p class="expire">距离结束：仅剩 {{keepfomate(course.active_time/86400)}}天 {{keepfomate(course.active_time/3600%24)}}小时 {{keepfomate(course.active_time/60%60)}}分 <span class="second">{{keepfomate(course.active_time%60)}}</span> 秒</p>
             </div>
-            <p class="course-price">
+            <p class="course-price" v-if="course.active_time">
               <span>活动价</span>
-              <span class="discount">¥0.00</span>
+              <span class="discount">¥{{course.real_price}}</span>
               <span class="original">¥{{course.price}}</span>
             </p>
+            <div class="sale-time course-price2" v-if="!course.active_time">
+              <span>价格</span>
+              <p class="sale-type discount" style="color:#fff;">¥{{course.price}}</p>
+            </div>
             <div class="buy">
               <div class="buy-btn">
                 <button class="buy-now" @click="addCartHeader">立即购买</button>
@@ -104,6 +108,7 @@ export default {
     name: "Detail",
     data(){
       return {
+          active_time:0,
         tabIndex:2, // 当前选项卡显示的下标
           course_id:1,
           course:[],
@@ -136,6 +141,14 @@ export default {
         this.get_course()
     },
     methods: {
+        keepfomate(timer){
+            timer=parseInt(timer)
+            if(timer>10){
+                return timer
+            }else{
+                return 0+timer
+            }
+        },
         onPlayerPlay(event){
         // 当视频播放时，执行的方法
         alert("播放视频")
@@ -150,6 +163,15 @@ export default {
               this.playerOptions.poster = response.data.course_img;
               // 修改视频地址
               this.playerOptions.sources[0].src = response.data.course_video;
+              // console.log(response.data.active_time)
+              let timer= setInterval(()=>{
+                  if(this.course.active_time>0){
+                      this.course.active_time--
+                  }else{
+                      clearInterval(timer)
+                  }
+              },1000);
+              console.log(this.active_time)
           }).catch(error=>{
 
           })
@@ -529,5 +551,10 @@ export default {
   }
 .try a{
   color: #ffffff;
+}
+.course-price2 span{
+  float:left;
+  margin-top: 4px;
+  color: #fff;
 }
 </style>

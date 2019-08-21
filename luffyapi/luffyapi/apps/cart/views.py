@@ -11,7 +11,7 @@ import logging
 log=logging.getLogger()
 
 class CartCouserViewSet(ViewSet):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
 
     @action(methods=['POST'],detail=False)
     def add_course(self,request):
@@ -45,17 +45,15 @@ class CartCouserViewSet(ViewSet):
 
     @action(methods=['GET'],detail=False)
     def get_course(self,request):
-        print(1)
-        user_id=request.user.id
-        print(user_id)
-        # user_id=1
+
+        # user_id=request.user.id
+
+        user_id=1
         data=[]
         redis=get_redis_connection('cart')
         course_list=redis.hgetall('cart_%s'%user_id)
-        print(course_list)
         for course_bys in course_list:
             expire_bys=redis.hget('cart_%s'%user_id,course_bys)
-            print(expire_bys)
             selected_list=redis.smembers('selected_%s'%user_id)
 
             try:
@@ -63,13 +61,15 @@ class CartCouserViewSet(ViewSet):
                 data.append({
                     'id':course.id,
                     'name':course.name,
-                    'price':course.price,
+                    'price':course.real_price(),
                     'select':True if course_bys in selected_list else False,
                     'image':settings.DOMAL_IMAGE_URL+course.course_img.url,
+                    'expire_list':course.expire_list,
                 })
             except:
-                pass
+                print(course.expire_list)
 
+        print(len(data))
         return Response(data)
 
     @action(methods=['patch'],detail=False)
@@ -88,3 +88,7 @@ class CartCouserViewSet(ViewSet):
             return Response({'message':'数据库操作有误'},status=status.HTTP_403_FORBIDDEN)
 
         return Response({'状态勾选成功'},status=status.HTTP_200_OK)
+
+    @action(methods=['delete'],detail=False)
+    def delete(self,request):
+        course_id=

@@ -15,14 +15,14 @@
             <span class="do_more">操作</span>
           </div>
           <div class="cart_course_list">
-            <CartItem v-for="cart_course in cart_course_list" :cart="cart_course" :key="cart_course.id"></CartItem>
+            <CartItem v-for="cart_course in cart_course_list" :cart="cart_course" :key="cart_course.id" @changeprice="calc_total"></CartItem>
 
           </div>
           <div class="cart_footer_row">
             <span class="cart_select"><label> <el-checkbox v-model="checked"></el-checkbox><span>全选</span></label></span>
             <span class="cart_delete"><i class="el-icon-delete"></i> <span>删除</span></span>
             <span class="goto_pay">去结算</span>
-            <span class="cart_total">总计：¥0.0</span>
+            <span class="cart_total">总计：¥{{total}}</span>
           </div>
         </div>
       </div>
@@ -38,6 +38,7 @@ export default {
     name: "Cart",
     data(){
       return {
+          total:0,
         checked: false,
           cart_course_list:[]
       }
@@ -46,6 +47,15 @@ export default {
       this.get_course()
     },
     methods:{
+        calc_total(){
+            let total=0
+            for(let item in this.cart_course_list){
+                if (this.cart_course_list[item].select){
+                    total+=parseFloat(this.cart_course_list[item].price)
+                }
+            }
+            this.total=total.toFixed(2)
+        },
       get_course(){
           let user_token=localStorage.getItem('user_token') || sessionStorage.getItem('user_token');
             if(!user_token){
@@ -60,6 +70,7 @@ export default {
               }
           }).then(response=>{
              this.cart_course_list=response.data
+              this.calc_total()
               console.log(this.cart_course_list)
           }).catch(error=>{
               this.$message(error.response.data)
@@ -138,7 +149,7 @@ export default {
   line-height: 80px;
 }
 .cart_footer_row .cart_select span{
-  margin-left: -7px;
+  margin-left: 7px;
   font-size: 18px;
   color: #666;
 }

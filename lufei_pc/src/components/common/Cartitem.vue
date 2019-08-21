@@ -5,14 +5,11 @@
       </div>
       <div class="cart_column column_2">
         <img :src="cart.image" alt="">
-        <span><router-link to="/course/detail/1">{{cart.name}}</router-link></span>
+        <span><router-link :to="`/course/${cart.id}`">{{cart.name}}</router-link></span>
       </div>
       <div class="cart_column column_3">
         <el-select v-model="expire" size="mini" placeholder="请选择购买有效期" class="my_el_select">
-          <el-option label="1个月有效" value="30" key="30"></el-option>
-          <el-option label="2个月有效" value="60" key="60"></el-option>
-          <el-option label="3个月有效" value="90" key="90"></el-option>
-          <el-option label="永久有效" value="10000" key="10000"></el-option>
+          <el-option :label="expire.expire_text" :value="expire.expire_time" :key="expire.expire_time" v-for="expire in cart.expire_list"></el-option>
         </el-select>
       </div>
       <div class="cart_column column_4">¥{{cart.price}}</div>
@@ -25,14 +22,23 @@ export default {
     name: "CartItem",
     data(){
       return {
+          expire:0,
         checked:false,
-        expire: "1个月有效",
       }
     },
     props:['cart'],
     watch:{
       'cart.select':function () {
          this.changeselect()
+          this.$emit('changeprice')
+        },
+        'expire':function (value) {
+            this.cart.expire_list.forEach((item,key)=>{
+                if(item.expire_time==value){
+                    this.cart.price=item.price;
+                }
+                this.$emit('changeprice')
+            })
         }
     },
     methods:{
