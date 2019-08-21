@@ -67,9 +67,9 @@ class CartCouserViewSet(ViewSet):
                     'expire_list':course.expire_list,
                 })
             except:
-                print(course.expire_list)
+                pass
 
-        print(len(data))
+
         return Response(data)
 
     @action(methods=['patch'],detail=False)
@@ -91,4 +91,68 @@ class CartCouserViewSet(ViewSet):
 
     @action(methods=['delete'],detail=False)
     def delete(self,request):
-        course_id=
+        user_id = request.user.id
+        course_id=request.query_params.get('course_id')
+        try:
+            redis=get_redis_connection('cart')
+            pip=redis.pipeline()
+            pip.multi()
+            pip.hdel('cart_%s'%user_id,course_id)
+            pip.srem('selected_%s'%user_id,course_id)
+            pip.execute()
+        except:
+            print('错误')
+            return Response({'message':"购物车删除错误,请联系客服"},status=status.HTTP_403_FORBIDDEN)
+
+        return Response({'message':"删除成功"},status=status.HTTP_200_OK)
+
+    @action(methods=['put'],detail=False)
+    def put(self,request):
+        expire=request.data.get('expire')
+        user_id=request.user.id
+        # user_id=1
+        course_id=request.data.get('course_id')
+        print(course_id)
+        try:
+            redis=get_redis_connection('cart')
+            redis.hset('cart_%s'%user_id,course_id,expire)
+        except:
+            return Response({'message': "更改期限错误,请联系管理员"}, status=status.HTTP_403_FORBIDDEN)
+
+        return Response({'message':"更改成功"},status=status.HTTP_200_OK)
+
+    @action(methods=['get'],detail=False)
+    def selected_order(self,request):
+        # user_id=request.user.id
+        user_id=1
+        redis=get_redis_connection('cart')
+
+        selected_list=redis.smembers('selected_%s'%user_id)
+        if len(selected_list)<1:
+            return Response({'message': "更改期限错误,请联系管理员"}, status=status.HTTP_403_FORBIDDEN)
+        data=[]
+
+        for course_id_bys in selected_list:
+            expire_time=redis.hget('cart_%s'%user_id,course_id_bys).decode()
+
+            try:
+                course=Course.objects.get(is_delete=False,pk=course_id_bys.decode())
+
+                for i in course.expire_list:
+                    print(i)
+                    if i.get('expire_time')==int(expire_time):
+                        expire_text=i.get('expire_text')
+                        price=i.get('price')
+
+                data.append({
+                    'id':course.id,
+                    'name':course.name,
+                    'price':price,
+                    'real_price':course.real_price(price),
+                    'expire':expire_text,
+                    'img':settings.DOMAL_IMAGE_URL+course.course_img.url,
+                    'discount_name':course.discount_name
+                })
+            except:
+                pass
+        return Response(data)

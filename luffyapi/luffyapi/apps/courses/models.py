@@ -116,15 +116,17 @@ class Course(BaseModel):
         for item in expire_list:
             data.append({
                 'expire_text':item.expire_text,
-                'price':self.real_price(item.price),
-                'expire_time':item.expire_time
+                'price':item.price,
+                'expire_time':item.expire_time,
+                'real_price':self.real_price(item.price)
 
             })
 
         if self.price>0:
             data.append({
                 'expire_text': '永久有效',
-                'price': self.real_price(),
+                'real_price': self.real_price(),
+                'price': self.price,
                 'expire_time': 0
             })
 
@@ -132,7 +134,9 @@ class Course(BaseModel):
 
     @property
     def discount_name(self):
-        discount_list=self.course_discount.filter(is_show=True,is_delete=False).first()
+        from datetime import datetime
+        now=datetime.now()
+        discount_list=self.course_discount.filter(is_show=True,is_delete=False,active__created_time__lt=now,active__end_time__gt=now).first()
         if discount_list is None:
         #没有查到所有的优惠信息
             return None
@@ -169,8 +173,6 @@ class Course(BaseModel):
             return 0
         elif discount.sale[0]=='*':
             sale=float(discount.sale[1:])
-            print(sale,type(sale))
-            print(price,type(price))
             # return '%.2f'%(price*float(discount.sale[1:]))
             return (price * sale)
 
