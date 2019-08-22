@@ -34,4 +34,5 @@ urlpatterns = [
     path(r'user/',include('users.urls')),
     path(r'courses/',include('courses.urls')),
     path(r'cart/',include('cart.urls')),
+    path(r'order/',include('order.urls'))
 ]

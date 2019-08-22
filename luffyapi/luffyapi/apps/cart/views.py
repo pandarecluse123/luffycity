@@ -11,13 +11,13 @@ import logging
 log=logging.getLogger()
 
 class CartCouserViewSet(ViewSet):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
 
     @action(methods=['POST'],detail=False)
     def add_course(self,request):
         course_id=request.data.get('course_id')
         user_id=request.user.id
-        print(user_id)
+
         # user_id=1
         expire=0
 
@@ -36,7 +36,7 @@ class CartCouserViewSet(ViewSet):
 
             pip.execute()
             total=redis.hlen('cart_%s'%user_id)
-            print(total)
+
         except:
             log.error('redis服务器出错')
             return Response({'message':'添加购物车出现错误,请联系管理员'},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
@@ -46,9 +46,9 @@ class CartCouserViewSet(ViewSet):
     @action(methods=['GET'],detail=False)
     def get_course(self,request):
 
-        # user_id=request.user.id
+        user_id=request.user.id
 
-        user_id=1
+        # user_id=1
         data=[]
         redis=get_redis_connection('cart')
         course_list=redis.hgetall('cart_%s'%user_id)
@@ -101,7 +101,7 @@ class CartCouserViewSet(ViewSet):
             pip.srem('selected_%s'%user_id,course_id)
             pip.execute()
         except:
-            print('错误')
+
             return Response({'message':"购物车删除错误,请联系客服"},status=status.HTTP_403_FORBIDDEN)
 
         return Response({'message':"删除成功"},status=status.HTTP_200_OK)
@@ -112,7 +112,7 @@ class CartCouserViewSet(ViewSet):
         user_id=request.user.id
         # user_id=1
         course_id=request.data.get('course_id')
-        print(course_id)
+
         try:
             redis=get_redis_connection('cart')
             redis.hset('cart_%s'%user_id,course_id,expire)
@@ -123,13 +123,13 @@ class CartCouserViewSet(ViewSet):
 
     @action(methods=['get'],detail=False)
     def selected_order(self,request):
-        # user_id=request.user.id
-        user_id=1
+        user_id=request.user.id
+        # user_id=1
         redis=get_redis_connection('cart')
 
         selected_list=redis.smembers('selected_%s'%user_id)
         if len(selected_list)<1:
-            return Response({'message': "更改期限错误,请联系管理员"}, status=status.HTTP_403_FORBIDDEN)
+            return Response({'message': "课程不能为空"}, status=status.HTTP_403_FORBIDDEN)
         data=[]
 
         for course_id_bys in selected_list:
@@ -139,7 +139,7 @@ class CartCouserViewSet(ViewSet):
                 course=Course.objects.get(is_delete=False,pk=course_id_bys.decode())
 
                 for i in course.expire_list:
-                    print(i)
+
                     if i.get('expire_time')==int(expire_time):
                         expire_text=i.get('expire_text')
                         price=i.get('price')

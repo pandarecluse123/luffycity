@@ -2,99 +2,179 @@
   <div class="cart">
     <Header/>
     <div class="cart-info">
-        <h3 class="cart-top">购物车结算 <span>共{{course_list.length}}门课程</span></h3>
-        <div class="cart-title">
-           <el-row>
-             <el-col :span="2">&nbsp;</el-col>
-             <el-col :span="10">课程</el-col>
-             <el-col :span="8">有效期</el-col>
-             <el-col :span="4">价格</el-col>
-           </el-row>
+      <h3 class="cart-top">购物车结算 <span>共{{course_list.length}}门课程</span></h3>
+      <div class="cart-title">
+        <el-row>
+          <el-col :span="2">&nbsp;</el-col>
+          <el-col :span="10">课程</el-col>
+          <el-col :span="8">有效期</el-col>
+          <el-col :span="4">价格</el-col>
+        </el-row>
+      </div>
+      <div class="cart-item" v-for="course,key in course_list" :key="key">
+        <el-row>
+          <el-col :span="2" class="checkbox">&nbsp;&nbsp;</el-col>
+          <el-col :span="10" class="course-info">
+            <img :src="course.img" alt="">
+            <div class="course_name">
+              {{course.name}}
+              <span class="discount_name">{{course.discount_name}}</span>
+            </div>
+          </el-col>
+          <el-col :span="8"><span>{{course.expire}}</span></el-col>
+          <el-col :span="4" class="course-price">
+            ¥{{course.real_price}}
+            <span class="original-price">原价 ¥{{course.price}}</span>
+          </el-col>
+        </el-row>
+      </div>
+
+       <div class="discount">
+          <div id="accordion">
+            <div class="coupon-box">
+              <div class="icon-box">
+                <span class="select-coupon">使用优惠劵：</span>
+                <a class="select-icon unselect"><img class="sign is_show_select" src="../../static/image/12.png" alt=""></a>
+                <span class="coupon-num">有3张可用</span>
+              </div>
+              <p class="sum-price-wrap">商品总金额：<span class="sum-price">0.00元</span></p>
+            </div>
+            <div id="collapseOne" >
+              <ul class="coupon-list" >
+                <li class="coupon-item disable">
+                  <p class="coupon-name">10元优惠券</p>
+                  <p class="coupon-condition">满10元可以使用</p>
+                  <p class="coupon-time start_time">开始时间：2019-10:01 00:00:00</p>
+                  <p class="coupon-time end_time">过期时间：2019-11:01 00:00:00</p>
+                </li>
+                <li class="coupon-item active">
+                  <p class="coupon-name">10元优惠券</p>
+                  <p class="coupon-condition">满10元可以使用</p>
+                  <p class="coupon-time start_time">开始时间：2019-10:01 00:00:00</p>
+                  <p class="coupon-time end_time">过期时间：2019-11:01 00:00:00</p>
+                </li>
+                <li class="coupon-item">
+                  <p class="coupon-name">10元优惠券</p>
+                  <p class="coupon-condition">满10元可以使用</p>
+                  <p class="coupon-time start_time">开始时间：2019-10:01 00:00:00</p>
+                  <p class="coupon-time end_time">过期时间：2019-11:01 00:00:00</p>
+                </li>
+                <li class="coupon-item">
+                  <p class="coupon-name">10元优惠券</p>
+                  <p class="coupon-condition">满10元可以使用</p>
+                  <p class="coupon-time start_time">开始时间：2019-10:01 00:00:00</p>
+                  <p class="coupon-time end_time">过期时间：2019-11:01 00:00:00</p>
+                </li>
+              </ul>
+              <div class="no-coupon">
+                <span class="no-coupon-tips">暂无可用优惠券</span>
+              </div>
+            </div>
+          </div>
+          <div class="credit-box">
+            <label class="my_el_check_box"><el-checkbox class="my_el_checkbox" ></el-checkbox></label>
+            <p class="discount-num1" >使用我的贝里</p>
+            <p class="discount-num2" ><span>总积分：100，已抵扣 ￥0.00，本次花费0积分</span></p>
+          </div>
+          <p class="sun-coupon-num">优惠券抵扣：<span>0.00元</span></p>
         </div>
-        <div class="cart-item" v-for="course,key in course_list" :key="key">
-          <el-row>
-             <el-col :span="2" class="checkbox">&nbsp;&nbsp;</el-col>
-             <el-col :span="10" class="course-info">
-               <img :src="course.img" alt="">
-                <div class="course_name">
-                 {{course.name}}
-                 <span class="discount_name">{{course.discount_name}}</span>
-               </div>
-             </el-col>
-             <el-col :span="8"><span>{{course.expire}}</span></el-col>
-            <el-col :span="4" class="course-price">
-               ¥{{course.real_price}}
-               <span class="original-price">原价 ¥{{course.price}}</span>
-             </el-col>
-           </el-row>
-        </div>
-        <div class="calc">
-            <el-row class="pay-row">
-              <el-col :span="4" class="pay-col"><span class="pay-text">支付方式：</span></el-col>
-              <el-col :span="8">
+
+    <div class="calc">
+      <el-row class="pay-row">
+        <el-col :span="4" class="pay-col"><span class="pay-text">支付方式：</span></el-col>
+        <el-col :span="8">
                 <span class="alipay" @click="pay_type=1">
                   <img v-if='pay_type==1' src="../../static/image/alipay2.png" alt="">
                   <img v-else src="../../static/image/alipay.png" alt="">
                 </span>
-                <span class="alipay wechat" @click="pay_type=2">
+          <span class="alipay wechat" @click="pay_type=2">
                   <img v-if="pay_type==2" src="../../static/image/wechat2.png" alt="">
                   <img v-else src="../../static/image/wechat.png" alt="">
                 </span>
-              </el-col>
-              <el-col :span="8" class="count">实付款： <span>¥99.50</span></el-col>
-              <el-col :span="4" class="cart-pay"><span>去支付</span></el-col>
-            </el-row>
-        </div>
+        </el-col>
+        <el-col :span="8" class="count">实付款： <span>¥{{this.total}}</span></el-col>
+        <el-col :span="4" class="cart-pay"><span @click="payHander">去支付</span></el-col>
+      </el-row>
     </div>
-    <Footer/>
+  </div>
+  <Footer/>
   </div>
 </template>
 
 
 <script>
-  import Header from "./common/Header";
-  import Footer from "./common/Footer";
+    import Header from "./common/Header";
+    import Footer from "./common/Footer";
+
     export default {
         name: "Order",
-        data(){
-          return{
-              course_list:[],
-              pay_type:1
-          }
+        data() {
+            return {
+                course_list: [],
+                pay_type: 1,
+                total: 0,
+                coupon: 0,
+                credit: 0
+            }
         },
-        components:{
+        components: {
             Header,
             Footer
         },
         created() {
             this.get_course_list()
+
         },
-        methods:{
-            check_user(){
-             let user_token=localStorage.getItem('user_token') || sessionStorage.getItem('user_token');
-            if(!user_token){
-                this.$confirm('对不起,请登录后继续操作','警告').then(()=>{
-                     this.$router.push('/user/login/');
-                });
-                return false
-            }
-             return user_token
-        },
-            get_course_list(){
-                 this.$axios.get(`${this.$settings.Host}/cart/course/selected_order/`, {
-                headers:{
-                    'Authorization':'jwt '+this.check_user()
+        methods: {
+            check_user() {
+                let user_token = localStorage.getItem('user_token') || sessionStorage.getItem('user_token');
+                if (!user_token) {
+                    this.$confirm('对不起,请登录后继续操作', '警告').then(() => {
+                        this.$router.push('/user/login/');
+                    });
+                    return false
                 }
-            }
-          ).then(response=>{
-             this.course_list=response.data
-          }).catch(error=>{
-              this.$message('出现问题')
-          });
+                return user_token
+            },
+            get_course_list() {
+                this.$axios.get(`${this.$settings.Host}/cart/course/selected_order/`, {
+                        headers: {
+                            'Authorization': 'jwt ' + this.check_user()
+                        }
+                    }
+                ).then(response => {
+                    this.course_list = response.data;
+                    this.get_total()
+                }).catch(error => {
+                    console.log(error.response.data.message)
+                });
+            },
+            payHander() {
+                this.$axios.post(`${this.$settings.Host}/order/`, {
+                    'pay_type': this.pay_type,
+                    'coupon': this.coupon,
+                    'credit': this.credit
+                }, {
+                    headers: {
+                        'Authorization': 'jwt ' + this.check_user()
+                    }
+                }).then(response => {
+                    this.get_course_list()
+                }).catch(error => {
+                    console.log(error.response)
+                })
+
+            },
+            get_total() {
+                let total = 0
+                for (let item in this.course_list) {
+                    total += parseFloat(this.course_list[item].real_price)
+
+                }
+                this.total = total.toFixed(2)
             }
         }
     }
-
 
 
 </script>
@@ -200,5 +280,164 @@
   display: block;
   height: 14px;
   color: #ffc210;
+}
+
+.coupon-box{
+  text-align: left;
+  padding-bottom: 22px;
+  padding-left:30px;
+  border-bottom: 1px solid #e8e8e8;
+}
+.coupon-box::after{
+  content: "";
+  display: block;
+  clear: both;
+}
+.icon-box{
+  float: left;
+}
+.icon-box .select-coupon{
+  float: left;
+  color: #666;
+  font-size: 16px;
+}
+.icon-box::after{
+  content:"";
+  clear:both;
+  display: block;
+}
+.select-icon{
+  width: 20px;
+  height: 20px;
+  float: left;
+}
+.select-icon img{
+  max-height:100%;
+  max-width: 100%;
+  margin-top: 2px;
+  transform: rotate(-90deg);
+  transition: transform .5s;
+}
+.is_show_select{
+  transform: rotate(0deg)!important;
+}
+.coupon-num{
+    height: 22px;
+    line-height: 22px;
+    padding: 0 5px;
+    text-align: center;
+    font-size: 12px;
+    float: left;
+    color: #fff;
+    letter-spacing: .27px;
+    background: #fa6240;
+    border-radius: 2px;
+    margin-left: 20px;
+}
+.sum-price-wrap{
+    float: right;
+    font-size: 16px;
+    color: #4a4a4a;
+    margin-right: 45px;
+}
+.sum-price-wrap .sum-price{
+  font-size: 18px;
+  color: #fa6240;
+}
+
+.no-coupon{
+  text-align: center;
+  width: 100%;
+  padding: 50px 0px;
+  align-items: center;
+  justify-content: center; /* 文本两端对其 */
+  border-bottom: 1px solid rgb(232, 232, 232);
+}
+.no-coupon-tips{
+  font-size: 16px;
+  color: #9b9b9b;
+}
+.credit-box{
+  height: 30px;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end
+}
+.my_el_check_box{
+  position: relative;
+}
+.my_el_checkbox{
+  margin-right: 10px;
+  width: 16px;
+  height: 16px;
+}
+.discount-num1{
+  color: #9b9b9b;
+  font-size: 16px;
+  margin-right: 45px;
+}
+.discount-num2{
+  margin-right: 45px;
+  font-size: 16px;
+  color: #4a4a4a;
+}
+.sun-coupon-num{
+  margin-right: 45px;
+  margin-bottom:43px;
+  margin-top: 40px;
+  font-size: 16px;
+  color: #4a4a4a;
+  display: inline-block;
+}
+.sun-coupon-num span{
+  font-size: 18px;
+  color: #fa6240;
+}
+.coupon-list{
+  margin: 20px 0;
+}
+.coupon-list::after{
+  display: block;
+  content:"";
+  clear: both;
+}
+.coupon-item{
+  float: left;
+  margin: 15px 8px;
+  width: 180px;
+  height: 100px;
+  padding: 5px;
+  background-color: #fa3030;
+  cursor: pointer;
+}
+.coupon-list .active{
+  background-color: #fa9000;
+}
+.coupon-list .disable{
+  cursor: not-allowed;
+  background-color: #fa6060;
+}
+.coupon-condition{
+  font-size: 12px;
+  text-align: center;
+  color: #fff;
+}
+.coupon-name{
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+}
+.coupon-time{
+  text-align: left;
+  color: #fff;
+  font-size: 12px;
+}
+.unselect{
+  margin-left: 0px;
+  transform: rotate(-90deg);
+}
+.is_selected{
+  transform: rotate(-1turn)!important;
 }
 </style>
