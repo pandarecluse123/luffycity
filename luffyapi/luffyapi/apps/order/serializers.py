@@ -5,6 +5,7 @@ import random
 from django_redis import get_redis_connection
 from courses.models import Course,CourseExpire
 from django.db import transaction
+from coupon.models import UserCoupon
 
 class OrderModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -111,6 +112,32 @@ class OrderModelSerializer(serializers.ModelSerializer):
                 #保存订单的总价格
                 order.total_price=total_price
                 order.real_price=total_price#暂时先默认总价格为实付价格
+
+                if coupon:
+                    user_coupon=UserCoupon.objects.get(is_use=False,is_delete=False,is_show=True,pk=coupon)
+                    start_time=user_coupon.start_time.timestamp()
+                    now_time=datetime.now().timestamp()
+                    end_time=start_time+float(user_coupon.coupon.timer)*60*60*24
+
+
+                    if start_time>now_time and now_time>end_time:
+                        transaction.savepoint_rollback(save_id)
+                        raise serializers.ValidationError('对不起,优惠券不可用')
+
+                    if total_price<float(user_coupon.coupon.condition):
+                        transaction.savepoint_rollback(save_id)
+                        raise serializers.ValidationError('对不起,优惠券使用未达到条件')
+
+                    sale_num=float(user_coupon.coupon.sale[1:])
+                    sale_type=user_coupon.coupon.sale[0]
+                    if sale_type=='-':
+                        order.real_price=total_price-sale_num
+                    if sale_type=='*':
+                        order.real_price=total_price*sale_num
+
+                    if order.real_price<0:
+                        order.real_price=0
+
                 order.save()
 
             """3. 清除掉购物车中勾选的商品"""
