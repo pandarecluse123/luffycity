@@ -6,6 +6,7 @@ from django_redis import get_redis_connection
 from courses.models import Course,CourseExpire
 from django.db import transaction
 from coupon.models import UserCoupon
+from django.conf import  settings
 
 class OrderModelSerializer(serializers.ModelSerializer):
     class Meta:
@@ -38,6 +39,7 @@ class OrderModelSerializer(serializers.ModelSerializer):
         coupon=validated_data.get('coupon',0)
         #生成必要的参数
         user_id=1
+        # user_id=self.context['request'].user.id#在序列化器中使用context取得request对象
         order_title='路飞学城课程购买'
         order_number=datetime.now().strftime('%Y%m%d%H%M%S')+('%06d'%user_id)+('%04d'%random.randint(0,9999))
         order_status=0
@@ -113,6 +115,7 @@ class OrderModelSerializer(serializers.ModelSerializer):
                 order.total_price=total_price
                 order.real_price=total_price#暂时先默认总价格为实付价格
 
+                #使用优惠券
                 if coupon:
                     user_coupon=UserCoupon.objects.get(is_use=False,is_delete=False,is_show=True,pk=coupon)
                     start_time=user_coupon.start_time.timestamp()
@@ -137,6 +140,18 @@ class OrderModelSerializer(serializers.ModelSerializer):
 
                     if order.real_price<0:
                         order.real_price=0
+
+                #使用积分抵扣
+                if credit:
+                    user_credit=self.context['request'].user.credit
+                    if user_credit<credit:
+                        transaction.savepoint_rollback(save_id)
+                        raise serializers.ValidationError('对不起,积分不足,请核对后提交')
+
+                    if credit/settings.CREDIT_MONEY>order.real_price:
+                        transaction.savepoint_rollback(save_id)
+                        raise serializers.ValidationError('对不起,积分使用超过限制,请核对后提交')
+                    order.real_price=float('%.2f'%(order.real_price-credit/settings.CREDIT_MONEY))
 
                 order.save()
 

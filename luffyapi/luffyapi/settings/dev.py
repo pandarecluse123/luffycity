@@ -319,3 +319,6 @@ CKEDITOR_CONFIGS = {
 CKEDITOR_UPLOAD_PATH = ''
 CKEDITOR_UPLOAD_URL = "http://api.luffycity.cn:8000"
 DOMAL_IMAGE_URL='http://api.luffycity.cn:8000'
+
+#兑换积分的比例(一元对换的积分数)
+CREDIT_MONEY=10

@@ -58,12 +58,14 @@
         </div>
         <div class="credit-box">
           <label class="my_el_check_box">
-            <el-checkbox class="my_el_checkbox"></el-checkbox>
+            <el-checkbox class="my_el_checkbox" v-model="use_credit"></el-checkbox>
           </label>
-          <p class="discount-num1">使用我的贝里</p>
-          <p class="discount-num2"><span>总积分：100，已抵扣 ￥0.00，本次花费0积分</span></p>
+          <p class="discount-num1" >使用我的贝里</p>
+          <p class="discount-num2" v-if="use_credit"><span>总积分：{{user_credit}}，使用积分
+  <el-input-number v-model="credit" :min="1" :max="parseFloat(max_credit())" label="描述文字"></el-input-number>
+            剩余积分{{user_credit-credit}}</span></p>
         </div>
-        <p class="sun-coupon-num">优惠券抵扣：<span>0.00元</span></p>
+        <p class="sun-coupon-num" v-if="use_credit">积分抵扣：<span>{{(credit/credit_to_money).toFixed(2)}}元</span></p>
       </div>
 
       <div class="calc">
@@ -79,7 +81,7 @@
                   <img v-else src="../../static/image/wechat.png" alt="">
                 </span>
           </el-col>
-          <el-col :span="8" class="count">实付款： <span>¥{{this.real_total}}</span></el-col>
+          <el-col :span="8" class="count">实付款： <span>¥{{(this.real_total-credit/credit_to_money).toFixed(2)}}</span></el-col>
           <el-col :span="4" class="cart-pay"><span @click="payHander">去支付</span></el-col>
         </el-row>
       </div>
@@ -97,6 +99,7 @@
         name: "Order",
         data() {
             return {
+                credit_to_money:localStorage.getItem('credit_to_money') || sessionStorage.getItem('credit_to_money'),
                 course_list: [],
                 pay_type: 1,
                 real_total:0,
@@ -105,6 +108,8 @@
                 credit: 0,
                 coupon_list: [],
                 use_coupon: false,
+                use_credit:false,
+                user_credit:0,
             }
         },
         watch:{
@@ -121,8 +126,11 @@
             Footer
         },
         created() {
+            this.get_total();
+            this.get_real_total();
             this.get_course_list();
             this.get_coupon_list();
+            this.user_credit=localStorage.getItem('user_credit') || sessionStorage.getItem('user_credit')
         },
         methods: {
             check_user() {
@@ -158,7 +166,8 @@
                     }
                 ).then(response => {
                     this.course_list = response.data;
-                    this.get_total()
+                    this.get_total();
+                     this.get_real_total();
                 }).catch(error => {
                     console.log(error.response.data.message)
                 });
@@ -214,6 +223,14 @@
                 M = M > 9 ? M : '0' + M;
                 s = s > 9 ? s : '0' + s;
                 return Y + "-" + m + "-" + d + " " + H + ":" + M + ":" + s;
+            },
+            max_credit(){
+
+                if(this.credit>(this.total*this.credit_to_money)){
+                    return (this.total*this.credit_to_money)
+                }else{
+                     return this.user_credit
+                }
             },
             get_total() {
                 let total = 0
@@ -498,11 +515,14 @@
     font-size: 16px;
     color: #4a4a4a;
     display: inline-block;
+    text-align: right;
+    width: 100%;
   }
 
   .sun-coupon-num span {
     font-size: 18px;
     color: #fa6240;
+    margin-right: 40px;
   }
 
   .coupon-list {
@@ -560,4 +580,8 @@
   .is_selected {
     transform: rotate(0.25turn) !important;
   }
+
+.el-icon-minus,.el-icon-plus{
+ font-size: 12px;
+}
 </style>

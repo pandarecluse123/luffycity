@@ -58,16 +58,26 @@ export default {
                     localStorage.user_token = response.data.token;
                     localStorage.user_id = response.data.id;
                     localStorage.username = response.data.username;
+                    localStorage.user_credit = response.data.credit;
+                    localStorage.credit_to_money = response.data.credit_to_money;
+
                     sessionStorage.removeItem('user_token');
                     sessionStorage.removeItem('user_id');
-                    sessionStorage.removeItem('username')
+                    sessionStorage.removeItem('username');
+                    sessionStorage.removeItem('user_credit')
+                    sessionStorage.removeItem('credit_to_money')
                 } else {
                     sessionStorage.user_token = response.data.token;
                     sessionStorage.user_id = response.data.id;
                     sessionStorage.username = response.data.username;
+                    sessionStorage.user_credit = response.data.credit;
+                     sessionStorage.credit_to_money = response.data.credit_to_money;
                     localStorage.removeItem('user_token');
                     localStorage.removeItem('user_id');
-                    localStorage.removeItem('username')
+                    localStorage.removeItem('username');
+                    localStorage.removeItem('user_credit');
+                    localStorage.removeItem('credit_to_money');
+
                 }
                 let self = this;
                 this.$alert('欢迎来到路飞学城', '登录成功', {
