@@ -33,7 +33,7 @@ class OrderModelSerializer(serializers.ModelSerializer):
         """生成订单"""
         """1. 先生成订单记录"""
         # 接受客户端提交的数据
-        print(1)
+
         pay_type=validated_data.get('pay_type')
         credit=validated_data.get('credit',0)
         coupon=validated_data.get('coupon',0)
@@ -77,6 +77,7 @@ class OrderModelSerializer(serializers.ModelSerializer):
             for course_id_bytes in course_set:
                 course_expire_bytes=cart_list[course_id_bytes]
                 expire_id=int(course_expire_bytes.decode())
+
                 course_id=int(course_id_bytes.decode())
 
                 try:
@@ -87,11 +88,13 @@ class OrderModelSerializer(serializers.ModelSerializer):
 
                 #提取课程的有效期选项
                 try:
-                    course_expire=CourseExpire.objects.get(pk=expire_id)
+                    course_expire=CourseExpire.objects.get(course=course,expire_time=expire_id)
                     price=course_expire.price
+
 
                 except CourseExpire.DoesNotExist:
                     price=course.price
+
 
 
                 #生成订单详情记录
@@ -105,11 +108,14 @@ class OrderModelSerializer(serializers.ModelSerializer):
                         discount_name=course.discount_name,
                         orders=0,
                     )
+
                 except:
                     transaction.savepoint_rollback(save_id)
                     raise serializers.ValidationError("对不起，订单生成失败！请联系客服工作人员！")
 
                 total_price+=float(order_detail.real_price)
+
+
 
                 #保存订单的总价格
                 order.total_price=total_price

@@ -196,11 +196,21 @@
                         'Authorization': 'jwt ' + this.check_user()
                     }
                 }).then(response => {
-                    this.get_course_list()
+                    this.get_alipay_url(response.data.order_number)
                 }).catch(error => {
                     console.log(error.response)
                 })
 
+            },
+            get_alipay_url(order_number){
+                console.log(order_number)
+                this.$axios.post(`${this.$settings.Host}/payments/${order_number}/alipay/`,{
+                    headers: {
+                        'Authorization': 'jwt ' + this.check_user()
+                    }
+                }).then(response=>{
+                    location.href=response.data.pay_url
+                })
             },
             stime(start_time) {
                 let stime = start_time.replace('T', ' ');

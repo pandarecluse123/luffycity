@@ -10,6 +10,7 @@ import Course from "../components/Course";
 import Detail from "../components/Detail";
 import Cart from "../components/Cart";
 import Order from "../components/Order";
+import Success from "../components/Success";
 
 export default new Router({
   mode:'history',
@@ -33,11 +34,17 @@ export default new Router({
      {name:'Detail',
     path:'/course/:course',
     component:Detail},
+
      {name:'Cart',
     path:'/cart',
     component:Cart},
+
       {name:'Order',
     path:'/order',
     component:Order},
+
+    {name:'Success',
+    path:'/pay/result',
+    component:Success},
   ]
 })

@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'courses',
     'cart',
     'order',
-    'coupon'
+    'coupon',
+    'payments'
 ]
 
 MIDDLEWARE = [
@@ -322,3 +323,16 @@ DOMAL_IMAGE_URL='http://api.luffycity.cn:8000'
 
 #兑换积分的比例(一元对换的积分数)
 CREDIT_MONEY=10
+
+ALIAPY_CONFIG={
+    # 'gateway_url':'https://openapi.alipay.com/gateway.do?',#真实环境下使用
+    'gateway_url':'https://openapi.alipaydev.com/gateway.do?',#沙箱模式下的地址
+    'appid':'2016101400681886',
+    'app_notify_url':None,
+    'app_private_key_path':os.path.join(os.path.dirname(BASE_DIR),'luffyapi/apps/payments/key/app_private_key.pem'),
+    'alipay_public_key_path':os.path.join(os.path.dirname(BASE_DIR),'luffyapi/apps/payments/key/alipay_public_key.pem'),
+    'sign_type':'RSA2',
+    'debug':False,
+    'return_url':'http://www.luffycity.cn:8080/pay/result',
+    'notify_url': "http://api.luffycity.cn:8000/pay/result"
+}
