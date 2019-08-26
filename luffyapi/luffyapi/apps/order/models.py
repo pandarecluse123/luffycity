@@ -1,7 +1,7 @@
 from django.db import models
 from luffyapi.utils.models import BaseModel
 from users.models import User
-from courses.models import Course
+from courses.models import Course,CourseExpire
 
 # Create your models here.
 
@@ -32,6 +32,41 @@ class Order(BaseModel):
         db_table='ly_order'
         verbose_name='订单记录'
         verbose_name_plural=verbose_name
+
+
+    def order_status_info(self):
+        for num,info in self.status_choices:
+            if num==self.order_status:
+                return info
+
+    def order_course_list(self):
+        data_list=[]
+        course_list=self.order_courses.all()
+
+        for item in course_list:
+            try:
+                expire=CourseExpire.objects.get(course=item.course,expire_time=item.expire)
+                expire_text=expire.expire_text
+            except:
+                if item.expire==0:
+                    expire_text='永久有效'
+                else:
+                    raise CourseExpire.DoesNotExist
+
+            data_list.append(
+                {
+                    'name':item.course.name,
+                    'expire':expire_text,
+                    'price':item.price,
+                    'real_price':item.real_price,
+                    'discount_name':item.discount_name,
+                    # 'viedo_url':item.course.course_video.url
+                }
+            )
+
+        return data_list
+
+
 
     def __str__(self):
         return "%s,总价: %s,实付: %s" % (self.order_title, self.total_price, self.real_price)

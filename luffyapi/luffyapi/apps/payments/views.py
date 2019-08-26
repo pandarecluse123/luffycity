@@ -52,6 +52,18 @@ class AlipayResultAPIView(AlipayAPIView):
     def get(self,request):
 
         data = request.query_params.dict()
+        return self.result(data)
+
+
+    def post(self,request):
+
+        #是不是一定要用post方法?
+        #代理服务器因为转发的原因,会导致支付时候出现问题,所以代理服务器不能用来使用支付功能
+        data = request.data.dict()
+        return self.result(data)
+
+
+    def result(self,data):
         signature = data.pop("sign")
 
         alipay = AliPay(
@@ -69,41 +81,41 @@ class AlipayResultAPIView(AlipayAPIView):
 
         # if success and data["trade_status"] in ("TRADE_SUCCESS", "TRADE_FINISHED"):
         if success:
-            #修改订单状态
+            # 修改订单状态
 
-            out_trade_no=data.get('out_trade_no')
+            out_trade_no = data.get('out_trade_no')
             try:
-                order=Order.objects.get(order_number=out_trade_no,order_status=0)
-
+                order = Order.objects.get(order_number=out_trade_no, order_status=0)
+                order.pay_time=datetime.now()
             except:
-                return Response({'message':'订单不存在或已被支付'},status=status.HTTP_403_FORBIDDEN)
+                return Response({'message': '订单不存在或已被支付'}, status=status.HTTP_403_FORBIDDEN)
 
             with transaction.atomic():
-                save_id=transaction.savepoint()
-                order.order_status=1
-
+                save_id = transaction.savepoint()
+                order.order_status = 1
+                order.save()
                 # 处理用户的优惠券使用
-                if order.coupon>0:
-                    coupon_id=order.coupon
+                if order.coupon > 0:
+                    coupon_id = order.coupon
                     try:
-                        user_coupon=UserCoupon.objects.get(pk=coupon_id,is_use=False)
-                        user_coupon.is_use=True
+                        user_coupon = UserCoupon.objects.get(pk=coupon_id, is_use=False)
+                        user_coupon.is_use = True
                         user_coupon.save()
                     except:
                         log.error('订单生成中优惠券有误')
                         transaction.savepoint_rollback(save_id)
 
-                #用户的积分处理
-                    #用户积分信息的变更
-                    #积分流水的添加
-                if order.credit>0:
+                # 用户的积分处理
+                # 用户积分信息的变更
+                # 积分流水的添加
+                if order.credit > 0:
 
-                    user=order.user
-                    user_credit=user.credit-order.credit
-                    print(user_credit)
-                    if user_credit>0:
-                        credit=Credit.objects.create(user=user,opera=2,number=order.credit,orders=0)
-                        user.credit=user_credit
+                    user = order.user
+                    user_credit = user.credit - order.credit
+
+                    if user_credit > 0:
+                        credit = Credit.objects.create(user=user, opera=2, number=order.credit, orders=0)
+                        user.credit = user_credit
                         user.save()
                         credit.save()
                     else:
@@ -111,62 +123,63 @@ class AlipayResultAPIView(AlipayAPIView):
                         log.error('生成订单有误,积分计算出现问题')
                         transaction.savepoint_rollback(save_id)
 
-                #课程购买记录的处理
-                order_course=order.order_courses.all()
-                data_list=[]
+                # 课程购买记录的处理
+                order_course = order.order_courses.all()
+                data_list = []
+                course_list=[]
                 for item in order_course:
 
-                    #判断购买时是否到期,是否为永久期限
+                    # 判断购买时是否到期,是否为永久期限
                     try:
-                        user_course_info=UserCouse.objects.get(user=order.user,course=item.course)
-                        if datetime.now()>user_course_info.out_time:
-                            start_time=datetime.now().timestamp()
+                        user_course_info = UserCouse.objects.get(user=order.user, course=item.course)
+                        if datetime.now() > user_course_info.out_time:
+                            start_time = datetime.now().timestamp()
                         else:
-                            start_time=user_course_info.out_time.timestamp()
+                            start_time = user_course_info.out_time.timestamp()
                     except:
-                        start_time=datetime.now().timestamp()
-
-
-
+                        start_time = datetime.now().timestamp()
 
                     try:
-                        course_expire=CourseExpire.objects.get(course=item.course,expire_time=item.expire)
+                        course_expire = CourseExpire.objects.get(course=item.course, expire_time=item.expire)
                         timer = item.expire * 60 * 60 * 24
 
                         print(datetime.fromtimestamp(start_time))
 
-                        if datetime.fromtimestamp(start_time)!="2199-01-01 00:00:00":
+                        if datetime.fromtimestamp(start_time) != "2199-01-01 00:00:00":
 
                             out_time = start_time + timer
                             out_time = datetime.fromtimestamp(out_time)
                         else:
-                            out_time="2199-01-01 00:00:00"
+                            out_time = "2199-01-01 00:00:00"
                     except:
 
                         out_time = "2199-01-01 00:00:00"
 
-
                     data_list.append(
-                        UserCouse(user=order.user,course=item.course,trade_no=data.get('trade_no'),buy_type=1,pay_time=order.pay_time,out_time=out_time,orders=0)
+                        UserCouse(user=order.user, course=item.course, trade_no=data.get('trade_no'), buy_type=1,
+                                  pay_time=order.pay_time, out_time=out_time, orders=0)
 
                     )
-                UserCouse.objects.bulk_create(data_list)
-                # try:
-                #     UserCouse.objects.bulk_create(data_list)
-                # except:
-                #     log.error('订单%s出现购买记录写入写入错误'%order.order_number)
-                #     pass
 
-                return_data={
-                    'order_number':order.order_number,
-                    'pay_time':order.pay_time,
-                    'real_price':order.real_price
+                    course_list.append(
+                        item.course.name
+                    )
+
+
+                try:
+                    UserCouse.objects.bulk_create(data_list)
+                except:
+                    log.error('订单%s出现购买记录写入写入错误' % order.order_number)
+                    pass
+
+
+                return_data = {
+                    'order_number': order.order_number,
+                    'pay_time': order.pay_time,
+                    'real_price': order.real_price,
+                    'course_list':course_list
                 }
                 return Response(return_data)
         else:
-            return Response({'message':'支付失败'},status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response({'message': '支付失败'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-
-
-    def post(self):
-        return Response(200)

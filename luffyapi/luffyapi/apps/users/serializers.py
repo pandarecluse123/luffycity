@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import User
+from order.models import Order,OrderDetail
 
 class UserModelSerializer(serializers.ModelSerializer):
     sms_code = serializers.CharField(write_only=True, max_length=6, help_text="短信验证码")
@@ -44,3 +45,11 @@ class UserModelSerializer(serializers.ModelSerializer):
         user.token = jwt_encode_handler(payload)
 
         return user
+
+
+
+
+class UserOrderModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Order
+        fields=['order_status','total_price','real_price','order_status_info','created_time','order_number','order_course_list']

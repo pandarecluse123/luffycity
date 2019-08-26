@@ -4,11 +4,14 @@ from rest_framework.response import Response
 from django.conf import settings
 from rest_framework.generics import CreateAPIView
 from .models import User
-from .serializers import UserModelSerializer
+from .serializers import UserModelSerializer,UserOrderModelSerializer
 from django_redis import get_redis_connection
 import random,time,json
 from luffyapi.utils.yuntongxun.sms import CCP
 from rest_framework import status
+from rest_framework.generics import ListAPIView
+from order.models import Order
+from rest_framework.permissions import IsAuthenticated
 
 
 class VerifyCode(APIView):
@@ -82,3 +85,18 @@ class SMSCodeAPIView(APIView):
         else:
             return Response({"message": "短信发送成功！"}, status=status.HTTP_200_OK)
 
+class UserOrderListView(ListAPIView):
+    permission_classes = [IsAuthenticated]
+    queryset = Order.objects.all()
+    serializer_class =UserOrderModelSerializer
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset().filter(user=request.user))
+
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

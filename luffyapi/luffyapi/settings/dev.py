@@ -336,3 +336,12 @@ ALIAPY_CONFIG={
     'return_url':'http://www.luffycity.cn:8080/pay/result',
     'notify_url': "http://api.luffycity.cn:8000/pay/result"
 }
+
+ORDER_TIMER=10*60
+
+# 保利威视频加密服务
+POLYV_CONFIG = {
+    "userId":"46755f0cb5",
+    "secretkey":"M0tOK47W6u",
+    "tokenUrl":"https://hls.videocc.net/service/v1/token",
+}

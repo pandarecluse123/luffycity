@@ -5,14 +5,14 @@
         <div class="title">
 <!--          <img src="../../static/images/right.svg" alt="">-->
           <div class="success-tips">
-              <p class="tips1">您已成功购买 1 门课程！</p>
-              <p class="tips2">你还可以加入QQ群 <span>747556033</span> 学习交流</p>
+              <p class="tips1">您已成功购买 {{result.course_list.length}} 门课程！</p>
+              <p class="tips2">你还可以加入QQ群 <span>394860984</span> 学习交流</p>
           </div>
         </div>
         <div class="order-info">
-            <p class="info1"><b>付款时间：</b><span>2019/04/02 10:27</span></p>
-            <p class="info2"><b>付款金额：</b><span >0</span></p>
-            <p class="info3"><b>课程信息：</b><span><span>《Pycharm使用秘籍》</span></span></p>
+            <p class="info1"><b>付款时间：</b><span>{{result.pay_time|time_format}}</span></p>
+            <p class="info2"><b>付款金额：</b><span >{{result.real_price}}</span></p>
+            <p class="info3"><b>课程信息：</b><span v-for="course in result.course_list"> <<{{course }}>> </span></p>
         </div>
         <div class="wechat-code">
 <!--          <img src="../../static/image/server.cf99f78.png" alt="" class="er">-->
@@ -33,7 +33,7 @@
     name:"Success",
     data(){
       return {
-        current_page:0,
+        result:{},
       };
     },
     created(){
@@ -45,10 +45,26 @@
       Header,
       Footer,
     },
+      filters:{
+        time_format(time){
+            let pay_time=new Date(time);
+            let Y=pay_time.getFullYear();
+            let m=pay_time.getMonth();
+            m=m<10?'0'+m:m;
+            let D=pay_time.getDate();
+            D=D<10?'0'+D:D;
+            let H=pay_time.getHours();
+            H=H<10?'0'+H:H;
+            let M=pay_time.getMinutes();
+            M=M<10?'0'+M:M;
+
+            return `${Y}/${m}/${D} ${H}:${M}`
+        }
+      },
       methods:{
         send_alipay_result(){
             this.$axios.get(`${this.$settings.Host}/payments/alipay/result/${location.search}`).then(response=>{
-                console.log(response.data)
+                this.result=response.data
             })
         }
       }
